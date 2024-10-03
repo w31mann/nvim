@@ -1,0 +1,6 @@
+{
+    "extends": "markdownlint/style/all",
+
+    "MD013": { "line_length": 120 },
+    "MD046": { "style": "fenced" }
+}
