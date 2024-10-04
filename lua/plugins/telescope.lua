@@ -5,7 +5,11 @@ return {
     dependencies = {
         "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+        {
+            -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make"
+        },
     },
     keys = {
         {
@@ -14,7 +18,26 @@ return {
                 require("telescope.builtin").find_files({
                     prompt_title = "Find Files",
                     follow = true,
+                    hidden = true,
+                    find_command = { "fd", "--type", "f", "--color", "never",
+                        "--exclude", ".git",
+                        "--exclude", "target",
+                        "--exclude", "build",
+                    }
+                })
+            end,
+            desc = "Search files",
+        },
+        {
+            "<leader>sF",
+            function()
+                require("telescope.builtin").find_files({
+                    prompt_title = "Find Files",
+                    follow = true,
                     no_ignore = true,
+                    no_ignore_parent = true,
+                    hidden = true,
+                    find_command = { "fd", "--type", "f", "--color", "never" }
                 })
             end,
             desc = "Search files",
@@ -112,7 +135,6 @@ return {
                     "--line-number",
                     "--column",
                     "--smart-case",
-                    "--unrestricted",
                 },
                 layout_config = {
                     horizontal = {
