@@ -35,12 +35,9 @@ return {
                 },
                 markdown = true,
                 mason = true,
-                neotree = true,
-                notify = true,
                 telescope = true,
                 treesitter = true,
                 treesitter_context = true,
-                which_key = true,
                 native_lsp = {
                     enabled = true,
                     inlay_hints = {
