@@ -9,8 +9,10 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "saadparwaiz1/cmp_luasnip",
+        -- https://github.com/onsails/lspkind.nvim
         "onsails/lspkind-nvim",
         {
+            -- https://github.com/L3MON4D3/LuaSnip
             "L3MON4D3/LuaSnip",
             dependencies = {
                 -- friendly snippets - https://github.com/rafamadriz/friendly-snippets
@@ -124,15 +126,8 @@ return {
                 format = lspkind.cmp_format({
                     mode = "symbol_text",
                     maxwidth = 50,
-                    ellipsis_char = "...",
+                    ellipsis_char = "…",
                     symbol_map = { Codeium = "" },
-
-                    -- The function below will be called before any actual modifications from lspkind
-                    -- so that you can provide more controls on popup customization.
-                    -- See [#30](https://github.com/onsails/lspkind-nvim/pull/30)
-                    before = function(entry, vim_item)
-                        return vim_item
-                    end,
                 }),
             },
         })
