@@ -11,8 +11,8 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
     config = function()
+        ---@diagnostic disable: missing-fields
         require("nvim-treesitter.configs").setup({
-            -- modules = {},
             ensure_installed = {
                 "awk",
                 "bash",
@@ -72,16 +72,6 @@ return {
                     node_incremental = "<c-space>",
                     scope_incremental = "<c-s>",
                     node_decremental = "<c-s-space>",
-                },
-            },
-            context_commentstring = {
-                enable = true,
-                config = {
-                    -- Languages that have a single comment style
-                    html = "<!-- %s -->",
-                    json = "",
-                    systemd = "# %s",
-                    wit = "// %s",
                 },
             },
             textobjects = {
