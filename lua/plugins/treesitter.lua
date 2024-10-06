@@ -89,6 +89,10 @@ return {
                         ["ic"] = "@conditional.inner",
                         ["al"] = "@loop.outer",
                         ["il"] = "@loop.inner",
+                        ["as"] = "@scope.inner",
+                        ["is"] = "@scope.inner",
+                        ["aC"] = "@comment.outer",
+                        ["iC"] = "@comment.inner",
                     },
                 },
                 lsp_interop = {
