@@ -18,10 +18,7 @@ return {
             terminal_mappings = false,
             start_in_insert = true,
         }
-        vim.keymap.set("t", "jj", "<C-\\><C-n>", {
-            desc = "Exit terminal mode"
-        })
-        vim.keymap.set("t", "kk", "<C-\\><C-n>", {
+        vim.keymap.set("t", "tt", "<C-\\><C-n>", {
             desc = "Exit terminal mode"
         })
     end
