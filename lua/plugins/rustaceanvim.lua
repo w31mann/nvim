@@ -10,7 +10,7 @@ return {
             tools = {
                 float_win_config = {
                     border = vim.g.BORDER,
-                }
+                },
             },
             -- LSP configuration
             server = {

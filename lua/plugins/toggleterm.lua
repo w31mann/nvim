@@ -3,7 +3,7 @@
 return {
     "akinsho/toggleterm.nvim",
     config = function()
-        require("toggleterm").setup {
+        require("toggleterm").setup({
             -- size = 20
             size = function(term)
                 if term.direction == "horizontal" then
@@ -17,9 +17,9 @@ return {
             insert_mappings = false,
             terminal_mappings = false,
             start_in_insert = true,
-        }
-        vim.keymap.set("t", "jj", "<C-\\><C-n>", {
-            desc = "Exit terminal mode"
         })
-    end
+        vim.keymap.set("t", "jj", "<C-\\><C-n>", {
+            desc = "Exit terminal mode",
+        })
+    end,
 }

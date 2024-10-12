@@ -12,7 +12,7 @@ return {
     config = function()
         require("mason").setup({
             ui = {
-                border =vim.g.BORDER,
+                border = vim.g.BORDER,
                 width = 0.8,
                 height = 0.8,
             },
@@ -53,6 +53,7 @@ return {
                 "prettier",
                 "shellcheck",
                 "shellharden",
+                "stylua",
             },
             auto_update = true,
         })

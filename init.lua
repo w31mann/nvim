@@ -38,8 +38,8 @@ if lazy_ok then
             border = "rounded",
         },
         rocks = {
-            enabled = false
-        }
+            enabled = false,
+        },
     })
 else
     vim.notify("Lazy failed to setup plugins", vim.log.levels.ERROR)

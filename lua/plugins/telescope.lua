@@ -8,7 +8,7 @@ return {
         {
             -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
             "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make"
+            build = "make",
         },
     },
     keys = {
@@ -19,11 +19,19 @@ return {
                     prompt_title = "Find Files",
                     follow = true,
                     hidden = true,
-                    find_command = { "fd", "--type", "f", "--color", "never",
-                        "--exclude", ".git",
-                        "--exclude", "target",
-                        "--exclude", "build",
-                    }
+                    find_command = {
+                        "fd",
+                        "--type",
+                        "f",
+                        "--color",
+                        "never",
+                        "--exclude",
+                        ".git",
+                        "--exclude",
+                        "target",
+                        "--exclude",
+                        "build",
+                    },
                 })
             end,
             desc = "Search files",
@@ -37,7 +45,7 @@ return {
                     no_ignore = true,
                     no_ignore_parent = true,
                     hidden = true,
-                    find_command = { "fd", "--type", "f", "--color", "never" }
+                    find_command = { "fd", "--type", "f", "--color", "never" },
                 })
             end,
             desc = "Search files",
@@ -117,11 +125,25 @@ return {
 
         if vim.g.BORDER == "rounded" then
             borderchars = {
-                "─", "│", "─", "│", "╭", "╮", "╯", "╰"
+                "─",
+                "│",
+                "─",
+                "│",
+                "╭",
+                "╮",
+                "╯",
+                "╰",
             }
         else
             borderchars = {
-                "─", "│", "─", "│", "┌", "┐", "┘", "└"
+                "─",
+                "│",
+                "─",
+                "│",
+                "┌",
+                "┐",
+                "┘",
+                "└",
             }
         end
 

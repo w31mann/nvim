@@ -2,11 +2,11 @@ return {
     settings = {
         yaml = {
             format = {
-                enable = true
+                enable = true,
             },
             editor = {
-                tabSize = 4
-            }
-        }
-    }
+                tabSize = 4,
+            },
+        },
+    },
 }

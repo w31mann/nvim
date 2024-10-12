@@ -33,7 +33,7 @@ return {
         local handlers = require("plugins.lsp.handlers")
 
         require("lspconfig.ui.windows").default_options = {
-            border = "single"
+            border = "single",
         }
 
         handlers.setup()
