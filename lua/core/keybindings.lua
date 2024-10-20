@@ -168,3 +168,31 @@ vim.keymap.set("n", "Q", "@qj", {
 vim.keymap.set("x", "Q", "<cmd>norm @q<cr>", {
     desc = "Playback the macro from the q register on a visual selection",
 })
+
+if vim.uv.os_uname().sysname == "Darwin" then
+    vim.keymap.set("n", "ˆ", "<c-w>k", {
+        desc = "Move focus to split above",
+    })
+    vim.keymap.set("n", "ı", "<c-w>j", {
+        desc = "Move focus to split below",
+    })
+    vim.keymap.set("n", "Ó", "<c-w>h", {
+        desc = "Move focus to split left",
+    })
+    vim.keymap.set("n", "ﬂ", "<c-w>l", {
+        desc = "Move focus to split right",
+    })
+else
+    vim.keymap.set("n", "<m-s-k>", "<c-w>k", {
+        desc = "Move focus to split above",
+    })
+    vim.keymap.set("n", "<m-s-j>", "<c-w>j", {
+        desc = "Move focus to split below",
+    })
+    vim.keymap.set("n", "<m-s-h>", "<c-w>h", {
+        desc = "Move focus to split left",
+    })
+    vim.keymap.set("n", "<m-s-l>", "<c-w>l", {
+        desc = "Move focus to split right",
+    })
+end
