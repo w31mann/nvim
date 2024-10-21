@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     group = core_augroup,
 })
 -- equalize splits
-vim.api.nvim_create_autocmd("VimResized", {
+vim.api.nvim_create_autocmd({"VimResized", "TermEnter", "TermLeave"}, {
     command = "wincmd =",
     group = core_augroup,
 })
