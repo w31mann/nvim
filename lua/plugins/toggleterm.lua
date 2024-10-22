@@ -7,7 +7,7 @@ return {
 
         if vim.uv.os_uname().sysname == "Darwin" then
             vim.keymap.set("n", "†", function()
-                toggleterm.toggle()
+                toggleterm.toggle(vim.v.count)
             end, {
                 desc = "Open terminal",
             })
@@ -21,7 +21,7 @@ return {
             })
         else
             vim.keymap.set("n", "<m-t>", function()
-                toggleterm.toggle()
+                toggleterm.toggle(vim.v.count)
             end, {
                 desc = "Open terminal",
             })
@@ -43,7 +43,6 @@ return {
                     return vim.o.columns * 0.4
                 end
             end,
-            -- open_mapping = "[[†]]",
             insert_mappings = false,
             terminal_mappings = false,
             start_in_insert = true,
