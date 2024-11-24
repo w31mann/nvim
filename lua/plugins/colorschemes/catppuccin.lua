@@ -33,6 +33,7 @@ return {
                     enabled = true,
                     colored_indent_levels = false,
                 },
+                lsp_trouble = true,
                 markdown = true,
                 mason = true,
                 telescope = true,
@@ -44,10 +45,13 @@ return {
                         background = true,
                     },
                 },
+                ufo = true,
             },
             custom_highlights = function(color)
+                -- colors - https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/macchiato.lua
                 return {
                     WinSeparator = { fg = color.blue },
+                    Folded = { bg = color.surface0 },
                 }
             end,
         })

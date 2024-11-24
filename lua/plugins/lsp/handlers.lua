@@ -112,6 +112,14 @@ else
     m.capabilities = capabilities
 end
 
+local ufo_ok, _ = pcall(require, "ufo")
+if ufo_ok then
+    m.capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+    }
+end
+
 m.setup = function()
     local icons = require("core.icons")
 
