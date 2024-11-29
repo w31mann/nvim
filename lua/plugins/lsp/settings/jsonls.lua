@@ -37,9 +37,9 @@ return {
                     description = "UCM config",
                     fileMatch = { "ucm.json" },
                     folderUri =
-                    "/home/user/src/mwd_internal/over-the-air/ucm-amt/ucm-service/configs/ucm-config",
+                    "/home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/ucm-config",
                     url =
-                    "file:///home/user/src/mwd_internal/over-the-air/ucm-amt/ucm-service/configs/ucm-config/ucm.schema.json",
+                    "file:///home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/ucm-config/ucm.schema.json",
                 },
             },
         },
