@@ -3,6 +3,7 @@
 return {
     "OXY2DEV/markview.nvim",
     ft = "markdown",
+    enabled = true,
 
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
@@ -10,58 +11,44 @@ return {
     },
 
     config = function()
+        local presets = require("markview.presets");
+
         require("markview").setup({
+            highlight_groups = "dark",
             code_blocks = {
                 sign = "",
+                pad_amount = 2,
             },
-            horizontal_rules = {
-                enable = true,
-
-                position = "overlay",
-                parts = {
-                    {
-                        repeat_amount = function() --[[@as function]]
-                            local textoff =
-                                vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].textoff
-
-                            return math.floor((vim.o.colorcolumn - textoff) / 2)
-                        end,
-                    },
-                    {
-                        repeat_amount = function() --[[@as function]]
-                            local textoff =
-                                vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].textoff
-
-                            -- return math.ceil((vim.o.columns - textoff - 3) / 2);
-                            return math.ceil((vim.o.colorcolumn - textoff) / 2)
-                        end,
-                    },
-                },
+            horizontal_rules = presets.horizontal_rules.thin,
+            list_items = {
+                indent_size = 1,
+                shift_width = 2,
             },
-
-            headings = {
-                enable = true,
-                shift_width = 0,
-
-                heading_1 = {
-                    sign = "",
-                },
-                heading_2 = {
-                    sign = "",
-                },
-                heading_3 = {
-                    sign = "",
-                },
-                heading_4 = {
-                    sign = "",
-                },
-                heading_5 = {
-                    sign = "",
-                },
-                heading_6 = {
-                    sign = "",
-                },
-            },
+            headings = presets.headings.marker,
+            -- headings = {
+            --     enable = true,
+            --     shift_width = 0,
+            --
+            --     heading_1 = {
+            --         -- sign = "",
+            --         sign = "󰌕 ",
+            --     },
+            --     heading_2 = {
+            --         sign = "󰌕 ",
+            --     },
+            --     heading_3 = {
+            --         sign = "󰌕 ",
+            --     },
+            --     heading_4 = {
+            --         sign = "󰌕 ",
+            --     },
+            --     heading_5 = {
+            --         sign = "󰌕 ",
+            --     },
+            --     heading_6 = {
+            --         sign = "󰌕 ",
+            --     },
+            -- },
         })
 
         vim.keymap.set("n", "<leader>tm", ":Markview toggle<cr>", {
