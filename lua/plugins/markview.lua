@@ -4,12 +4,10 @@ return {
     "OXY2DEV/markview.nvim",
     ft = "markdown",
     enabled = true,
-
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
     },
-
     config = function()
         local presets = require("markview.presets");
 

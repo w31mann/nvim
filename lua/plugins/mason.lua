@@ -22,7 +22,10 @@ return {
 
         -- ensure LSP servers to be installed
         mason_lspconfig.setup({
+            automatic_installation = false,
             ensure_installed = {
+                -- example on how to select specific version:
+                -- "rust_analyzer@2024-04-29",
                 "bashls",
                 "clangd",
                 "cmake",
@@ -31,7 +34,6 @@ return {
                 "lua_ls",
                 "marksman",
                 "pyright",
-                -- "rust_analyzer@2024-04-29",
                 "rust_analyzer",
                 "taplo",
                 "yamlls",
