@@ -2,6 +2,7 @@
 
 return {
     "folke/trouble.nvim",
+    enabled = false,
     opts = {
         -- win = { size = 20 },
     },

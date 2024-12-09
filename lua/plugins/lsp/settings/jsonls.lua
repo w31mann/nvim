@@ -21,25 +21,25 @@ return {
                     description = "UCM SW package",
                     fileMatch = { "manifest.json" },
                     folderUri =
-                    "/home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/pkg-manifests/swpkg",
+                    "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swpkg",
                     url =
-                    "file:///home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/pkg-manifests/swpkg/schema.json",
+                    "file:///home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swpkg/manifest.schema.json",
                 },
                 {
                     description = "UCM SW cluster",
                     fileMatch = { "manifest.json" },
                     folderUri =
-                    "/home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/pkg-manifests/swcl",
+                    "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swcl",
                     url =
-                    "file:///home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/pkg-manifests/swcl/schema.json",
+                    "file:///home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swcl/manifest.schema.json",
                 },
                 {
                     description = "UCM config",
                     fileMatch = { "ucm.json" },
                     folderUri =
-                    "/home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/ucm-config",
+                    "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/ucm-daemon",
                     url =
-                    "file:///home/user/src/mwd_internal/over-the-air/ucm/ucm-service/configs/ucm-config/ucm.schema.json",
+                    "file:///home/user/src/mwd_internal/over-the-air/ucm/examples/configs/ucm-daemon/ucm.schema.json",
                 },
             },
         },
