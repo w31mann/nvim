@@ -105,14 +105,13 @@ local m = {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if cmp_nvim_lsp_ok then
-    m.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-else
-    m.capabilities = capabilities
+local blink_cmp_ok, blink_cmp = pcall(require, "blink.cmp")
+local ufo_ok, _ = pcall(require, "ufo")
+
+if blink_cmp_ok then
+    m.capabilities = blink_cmp.get_lsp_capabilities(capabilities)
 end
 
-local ufo_ok, _ = pcall(require, "ufo")
 if ufo_ok then
     m.capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,

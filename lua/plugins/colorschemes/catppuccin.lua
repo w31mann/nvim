@@ -20,7 +20,7 @@ return {
             no_italic = true,
             no_underline = true,
             integrations = {
-                cmp = true,
+                blink_cmp = true,
                 dap = true,
                 dap_ui = true,
                 gitsigns = true,
@@ -33,7 +33,6 @@ return {
                     enabled = true,
                     colored_indent_levels = false,
                 },
-                lsp_trouble = true,
                 markdown = true,
                 mason = true,
                 telescope = true,
