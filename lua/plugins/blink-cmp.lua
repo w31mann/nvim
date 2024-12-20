@@ -21,7 +21,7 @@ return {
     opts = {
         keymap = {
             preset = "default",
-            -- ["<c-s>"] = { "accept" },
+            ["<c-z>"] = { "accept" },
         },
         completion = {
             menu = {
