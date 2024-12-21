@@ -4,6 +4,7 @@ return {
     "saghen/blink.cmp",
     -- version = "v0.*",
     build = "cargo build --release --locked",
+    event = { "CmdlineEnter", "InsertEnter" },
     dependencies = {
         {
             -- luasnip - https://github.com/L3MON4D3/LuaSnip
@@ -24,6 +25,7 @@ return {
             ["<c-z>"] = { "accept" },
         },
         completion = {
+            keyword = { range = "full" },
             menu = {
                 border = vim.g.BORDER,
             },
