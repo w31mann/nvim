@@ -28,6 +28,9 @@ return {
             keyword = { range = "full" },
             menu = {
                 border = vim.g.BORDER,
+                draw = {
+                    treesitter = { "lsp" },
+                },
             },
             documentation = {
                 auto_show = true,
