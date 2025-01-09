@@ -3,27 +3,23 @@
 local function extra_settings(server)
     if server == "bashls" then
         return require("plugins.lsp.settings.bashls")
-    end
-    if server == "clangd" then
+    elseif server == "clangd" then
         return require("plugins.lsp.settings.clangd")
-    end
-    if server == "pyright" then
+    elseif server == "pyright" then
         return require("plugins.lsp.settings.pyright")
-    end
-    if server == "rust_analyzer" then
+    elseif server == "rust_analyzer" then
         return require("plugins.lsp.settings.rust_analyzer")
-    end
-    if server == "lua_ls" then
+    elseif server == "lua_ls" then
         return require("plugins.lsp.settings.lua_ls")
-    end
-    if server == "jsonls" then
+    elseif server == "jsonls" then
         return require("plugins.lsp.settings.jsonls")
-    end
-    if server == "yamlls" then
+    elseif server == "yamlls" then
         return require("plugins.lsp.settings.yamlls")
+    elseif server == "neocmake" then
+        return require("plugins.lsp.settings.neocmake")
+    else
+        return {}
     end
-
-    return {}
 end
 
 return {
@@ -41,7 +37,7 @@ return {
         local servers = {
             "bashls",
             "clangd",
-            "cmake",
+            "neocmake",
             "dockerls",
             "jsonls",
             "marksman",
