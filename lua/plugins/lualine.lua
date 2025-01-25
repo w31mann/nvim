@@ -16,7 +16,7 @@ return {
         }
 
         local function whitespaces()
-            if vim.api.nvim_buf_line_count(0) > 20000 then
+            if vim.api.nvim_buf_line_count(0) > 10000 then
                 return ""
             end
 
@@ -32,7 +32,7 @@ return {
         end
 
         local function indentation_file()
-            if vim.api.nvim_buf_line_count(0) > 20000 then
+            if vim.api.nvim_buf_line_count(0) > 10000 then
                 return ""
             end
 
@@ -56,7 +56,7 @@ return {
         end
 
         local function indentation_line()
-            if vim.api.nvim_buf_line_count(0) > 20000 then
+            if vim.api.nvim_buf_line_count(0) > 10000 then
                 return ""
             end
 
