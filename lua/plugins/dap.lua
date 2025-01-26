@@ -4,15 +4,13 @@ return {
     enabled = true,
     dependencies = {
         {
-            {
-                "rcarriga/nvim-dap-ui",
-                dependencies = {
-                    "nvim-neotest/nvim-nio",
-                },
+            "rcarriga/nvim-dap-ui",
+            dependencies = {
+                "nvim-neotest/nvim-nio",
             },
-            "theHamsta/nvim-dap-virtual-text",
-            "nvim-telescope/telescope-dap.nvim",
         },
+        "theHamsta/nvim-dap-virtual-text",
+        "nvim-telescope/telescope-dap.nvim",
     },
     config = function()
         local dap, dapui = require("dap"), require("dapui")
@@ -90,8 +88,5 @@ return {
             require("dap").terminate,
             { desc = "Terminate the debug session" }
         )
-        vim.keymap.set("n", "<leader>dU", function()
-            require("dapui").toggle({ reset = true })
-        end, { desc = "Toggle UI" })
     end,
 }
