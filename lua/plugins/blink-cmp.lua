@@ -7,16 +7,12 @@ return {
     event = { "CmdlineEnter", "InsertEnter" },
     dependencies = {
         {
-            -- luasnip - https://github.com/L3MON4D3/LuaSnip
-            "L3MON4D3/LuaSnip",
-            version = "v2.*",
-            dependencies = {
-                -- friendly snippets - https://github.com/rafamadriz/friendly-snippets
-                "rafamadriz/friendly-snippets",
-            },
-            config = function()
-                require("luasnip.loaders.from_vscode").lazy_load()
-            end,
+            -- friendly snippets - https://github.com/rafamadriz/friendly-snippets
+            "rafamadriz/friendly-snippets",
+        },
+        {
+            -- colorful-menu - https://github.com/xzbdmw/colorful-menu.nvim
+            "xzbdmw/colorful-menu.nvim",
         },
     },
     opts = {
