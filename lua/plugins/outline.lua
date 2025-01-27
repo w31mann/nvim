@@ -1,4 +1,5 @@
 -- outline - https://github.com/hedyhli/outline.nvim
+
 return {
     "hedyhli/outline.nvim",
     keys = {
@@ -9,7 +10,9 @@ return {
         },
     },
     opts = {
-        peek_location = "p",
-        toggle_preview = "P",
+        keymaps = {
+            peek_location = "p",
+            toggle_preview = "P",
+        },
     },
 }
