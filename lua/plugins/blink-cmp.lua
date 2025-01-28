@@ -10,10 +10,10 @@ return {
             -- friendly snippets - https://github.com/rafamadriz/friendly-snippets
             "rafamadriz/friendly-snippets",
         },
-        {
-            -- colorful-menu - https://github.com/xzbdmw/colorful-menu.nvim
-            "xzbdmw/colorful-menu.nvim",
-        },
+        -- {
+        --     -- colorful-menu - https://github.com/xzbdmw/colorful-menu.nvim
+        --     "xzbdmw/colorful-menu.nvim",
+        -- },
     },
     opts = {
         keymap = {
@@ -26,6 +26,18 @@ return {
                 border = vim.g.BORDER,
                 draw = {
                     treesitter = { "lsp" },
+                    -- colorful-menu
+                    -- columns = { { "kind_icon" }, { "label", gap = 1 } },
+                    -- components = {
+                    --     label = {
+                    --         text = function(ctx)
+                    --             return require("colorful-menu").blink_components_text(ctx)
+                    --         end,
+                    --         highlight = function(ctx)
+                    --             return require("colorful-menu").blink_components_highlight(ctx)
+                    --         end,
+                    --     },
+                    -- },
                 },
             },
             documentation = {
