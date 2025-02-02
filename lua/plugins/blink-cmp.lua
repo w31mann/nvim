@@ -48,7 +48,7 @@ return {
                 },
             },
             ghost_text = {
-                enabled = true,
+                -- enabled = true,
             },
         },
         signature = {
