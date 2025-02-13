@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ucm-daemon'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ucm-daemon",
+                    "--package=ucm-daemon"
+                ]
+            },
+            "program": "${workspaceFolder}/target/debug/ucm-daemon",
+            "args": [
+                "-i",
+                "examples/configs/ucm-daemon/runtime_intproto.json",
+                "-c",
+                "examples/configs/ucm-daemon/ucm.json"
+            ],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
