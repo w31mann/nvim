@@ -52,7 +52,7 @@ return {
                 "codelldb",
                 "gitlint",
                 "isort",
-                "markdownlint",
+                "markdownlint-cli2",
                 "prettier",
                 "shellcheck",
                 "shellharden",

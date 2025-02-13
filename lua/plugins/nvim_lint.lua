@@ -3,19 +3,21 @@
 return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
+    ft = { "markdown", "gitcommit" },
     config = function()
         local nvim_lint = require("lint")
 
         nvim_lint.linters_by_ft = {
-            markdown = { "markdownlint" },
+            markdown = { "markdownlint-cli2" },
             gitcommit = { "gitlint" },
         }
 
-        local markdownlint = nvim_lint.linters.markdownlint
+        local markdownlint = nvim_lint.linters["markdownlint-cli2"]
         markdownlint.args = {
-            "--config=~/.config/nvim/.markdownlint.json",
-            "-",
+            "--config",
+            vim.fn.stdpath("config") .. "/configs/linters/.markdownlint.json",
         }
+
         local gitlint = nvim_lint.linters.gitlint
         gitlint.args = {
             "--contrib=contrib-title-conventional-commits",
