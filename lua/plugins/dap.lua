@@ -1,16 +1,21 @@
+-- nvim-dap - https://github.com/mfussenegger/nvim-dap
+
 return {
     "mfussenegger/nvim-dap",
     event = "VeryLazy",
     enabled = true,
     dependencies = {
         {
+            -- nvim-dap-ui - https://github.com/rcarriga/nvim-dap-ui
             "rcarriga/nvim-dap-ui",
             dependencies = {
                 "nvim-neotest/nvim-nio",
             },
         },
+        -- nvim-dae-virtual-text - https://github.com/theHamsta/nvim-dap-virtual-text
         "theHamsta/nvim-dap-virtual-text",
-        "nvim-telescope/telescope-dap.nvim",
+        -- telescope-dap - https://github.com/nvim-telescope/telescope-dap.nvim
+        -- "nvim-telescope/telescope-dap.nvim",
     },
     config = function()
         local dap, dapui = require("dap"), require("dapui")
@@ -40,6 +45,11 @@ return {
             { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" }
         )
         sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+
+        dap.adapters.lldb = {
+            type = "executable",
+            command = "codelldb",
+        }
 
         vim.keymap.set(
             "n",

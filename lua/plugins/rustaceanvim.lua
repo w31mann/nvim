@@ -15,7 +15,7 @@ return {
             -- LSP configuration
             server = {
                 on_attach = require("plugins.lsp.handlers").on_attach,
-                -- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
+                -- https://rust-analyzer.github.io/book/configuration.html
                 default_settings = {
                     cargo = {
                         features = "all",
