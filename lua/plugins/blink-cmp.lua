@@ -20,6 +20,14 @@ return {
             preset = "default",
             ["<c-z>"] = { "accept" },
         },
+        sources = {
+            default = { "lsp", "buffer", "snippets", "path", "cmdline" },
+        },
+        cmdline = {
+            completion = {
+                menu = { auto_show = true },
+            },
+        },
         completion = {
             keyword = { range = "full" },
             menu = {
