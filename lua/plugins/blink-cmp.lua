@@ -24,6 +24,10 @@ return {
             default = { "lsp", "buffer", "snippets", "path", "cmdline" },
         },
         cmdline = {
+            keymap = {
+                preset = "cmdline",
+                ["<c-z>"] = { "accept" },
+            },
             completion = {
                 menu = { auto_show = true },
             },
