@@ -7,11 +7,6 @@ return {
     ft = { "rust" },
     config = function()
         vim.g.rustaceanvim = {
-            tools = {
-                float_win_config = {
-                    border = vim.g.BORDER,
-                },
-            },
             -- LSP configuration
             server = {
                 on_attach = require("plugins.lsp.handlers").on_attach,

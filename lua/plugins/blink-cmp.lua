@@ -35,7 +35,6 @@ return {
         completion = {
             keyword = { range = "full" },
             menu = {
-                border = vim.g.BORDER,
                 draw = {
                     treesitter = { "lsp" },
                     -- colorful-menu
@@ -55,9 +54,6 @@ return {
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 500,
-                window = {
-                    border = vim.g.BORDER,
-                },
             },
             ghost_text = {
                 -- enabled = true,
@@ -66,7 +62,6 @@ return {
         signature = {
             enabled = true,
             window = {
-                border = vim.g.BORDER,
                 scrollbar = true,
             },
         },

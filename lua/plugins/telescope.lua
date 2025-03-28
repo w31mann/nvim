@@ -121,32 +121,6 @@ return {
         local telescope = require("telescope")
         local actions = require("telescope.actions")
 
-        local borderchars = {}
-
-        if vim.g.BORDER == "rounded" then
-            borderchars = {
-                "─",
-                "│",
-                "─",
-                "│",
-                "╭",
-                "╮",
-                "╯",
-                "╰",
-            }
-        else
-            borderchars = {
-                "─",
-                "│",
-                "─",
-                "│",
-                "┌",
-                "┐",
-                "┘",
-                "└",
-            }
-        end
-
         telescope.setup({
             defaults = {
                 vimgrep_arguments = {
@@ -166,7 +140,6 @@ return {
                     width = 0.87,
                     height = 0.80,
                 },
-                borderchars = borderchars,
                 mappings = {
                     i = {
                         ["<c-c>"] = actions.close,
