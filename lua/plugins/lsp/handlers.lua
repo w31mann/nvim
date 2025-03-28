@@ -72,18 +72,18 @@ local function lsp_keymaps(bufnr)
     if vim.uv.os_uname().sysname == "Darwin" then
         -- <option>-d
         vim.keymap.set("n", "∂", function()
-            vim.diagnostic.goto_next()
+            vim.diagnostic.jump({ count = 1, float = true })
         end, { buffer = bufnr, desc = "Go to next diagnostic" })
         -- <option>-D
         vim.keymap.set("n", "™", function()
-            vim.diagnostic.goto_prev()
+            vim.diagnostic.jump({ count = -1, float = true })
         end, { buffer = bufnr, desc = "Go to previous diagnostic" })
     else
         vim.keymap.set("n", "<m-d>", function()
-            vim.diagnostic.goto_next()
+            vim.diagnostic.jump({ count = 1, float = true })
         end, { buffer = bufnr, desc = "Go to next diagnostic" })
         vim.keymap.set("n", "<m-D>", function()
-            vim.diagnostic.goto_prev()
+            vim.diagnostic.jump({ count = -1, float = true })
         end, { buffer = bufnr, desc = "Go to previous diagnostic" })
     end
 
@@ -91,6 +91,11 @@ local function lsp_keymaps(bufnr)
         buffer = bufnr,
         desc = "Toggle inlay hints",
     })
+
+    vim.keymap.set("n", "<leader>tv", function()
+        local new_config = not vim.diagnostic.config().virtual_lines
+        vim.diagnostic.config({ virtual_lines = new_config })
+    end, { desc = "Toggle diagnostic virtual_lines" })
 
     -- local conform_ok, _ = pcall(require, "conform")
     -- if not conform_ok then
@@ -123,8 +128,12 @@ m.setup = function()
     local icons = require("core.icons")
 
     local diagnostics_config = {
-        virtual_text = {
-            prefix = "",
+        -- virtual_text = {
+        --     prefix = "",
+        --     current_line = true,
+        -- },
+        virtual_lines = {
+            current_line = true,
         },
         signs = {
             text = {
@@ -134,16 +143,14 @@ m.setup = function()
                 [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
             },
         },
-        underline = true,
         update_in_insert = true,
         severity_sort = true,
         float = {
             focusable = false,
             style = "minimal",
-            border = vim.g.BORDER,
             source = true,
             header = "",
-            prefix = "",
+            suffix = "",
             format = function(d)
                 local t = vim.deepcopy(d)
                 if d.code then
@@ -153,17 +160,8 @@ m.setup = function()
             end,
         },
     }
-    local handlers_config = {
-        focusable = true,
-        style = "minimal",
-        border = vim.g.BORDER,
-    }
 
     vim.diagnostic.config(diagnostics_config)
-
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, handlers_config)
-    vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, handlers_config)
 end
 
 m.on_attach = function(client, bufnr)

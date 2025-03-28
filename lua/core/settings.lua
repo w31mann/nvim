@@ -1,6 +1,8 @@
 local indent = 4
 local textwidth = 100
 
+vim.g.BORDER = "single"
+
 vim.g.netrw_altv = 1
 vim.g.netrw_alto = 0
 vim.g.netrw_banner = 0
@@ -55,9 +57,8 @@ vim.opt.title = true
 vim.opt.titlestring = "%t%( %M%)%( (%{expand('%:~:.:h')})%)"
 vim.opt.updatetime = 300
 vim.opt.whichwrap:append("<,>,[,]")
+vim.opt.winborder = vim.g.BORDER
 vim.opt.wrap = false
 vim.opt.writebackup = false
-
-vim.g.BORDER = "single"
 
 -- vim.lsp.set_log_level("debug")
