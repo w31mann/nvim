@@ -143,12 +143,12 @@ m.setup = function()
                 [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
             },
         },
-        update_in_insert = true,
+        update_in_insert = false,
         severity_sort = true,
         float = {
             focusable = false,
             style = "minimal",
-            source = true,
+            source = "if_many",
             header = "",
             suffix = "",
             format = function(d)
