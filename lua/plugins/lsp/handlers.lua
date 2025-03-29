@@ -1,7 +1,7 @@
 local function lsp_keymaps(bufnr)
     local telescope_builtin_ok, telescope_builtin = pcall(require, "telescope.builtin")
     if not telescope_builtin_ok then
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, {
+        vim.keymap.set("n", "grr", vim.lsp.buf.references, {
             buffer = bufnr,
             desc = "Go to references",
         })
@@ -9,12 +9,12 @@ local function lsp_keymaps(bufnr)
             buffer = bufnr,
             desc = "Go to definition",
         })
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {
+        vim.keymap.set("n", "gri", vim.lsp.buf.implementation, {
             buffer = bufnr,
             desc = "Go to implementation",
         })
     else
-        vim.keymap.set("n", "gr", telescope_builtin.lsp_references, {
+        vim.keymap.set("n", "grr", telescope_builtin.lsp_references, {
             buffer = bufnr,
             desc = "Search references",
         })
@@ -22,7 +22,7 @@ local function lsp_keymaps(bufnr)
             buffer = bufnr,
             desc = "Go to definition",
         })
-        vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, {
+        vim.keymap.set("n", "gri", telescope_builtin.lsp_implementations, {
             buffer = bufnr,
             desc = "Go to implementation",
         })
@@ -36,11 +36,11 @@ local function lsp_keymaps(bufnr)
         buffer = bufnr,
         desc = "Go to definition",
     })
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
+    vim.keymap.set({ "n", "v" }, "gra", vim.lsp.buf.code_action, {
         buffer = bufnr,
         desc = "Code actions",
     })
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+    vim.keymap.set("n", "grn", vim.lsp.buf.rename, {
         buffer = bufnr,
         desc = "Rename",
     })
@@ -52,15 +52,11 @@ local function lsp_keymaps(bufnr)
         buffer = bufnr,
         desc = "Signature help",
     })
-    vim.keymap.set("n", "<leader><leader>d", require("core.utils").toggleDiagnostics, {
-        buffer = bufnr,
-        desc = "Toggle diagnostics",
-    })
-    vim.keymap.set("n", "<leader><leader>D", function()
+    vim.keymap.set("n", "<leader><leader>d", function()
         require("core.utils").toggleDiagnostics(true)
     end, {
         buffer = bufnr,
-        desc = "Toggle diagnostics",
+        desc = "Toggle diagnostics (globally)",
     })
     vim.keymap.set("n", "<space>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
@@ -146,8 +142,6 @@ m.setup = function()
         update_in_insert = false,
         severity_sort = true,
         float = {
-            focusable = false,
-            style = "minimal",
             source = "if_many",
             header = "",
             suffix = "",

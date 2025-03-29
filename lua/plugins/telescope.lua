@@ -121,8 +121,36 @@ return {
         local telescope = require("telescope")
         local actions = require("telescope.actions")
 
+        -- XXX workaround for nvim 0,11 bug (winborder):
+        -- https://github.com/nvim-telescope/telescope.nvim/issues/3436
+        --
+        -- once resolved, the autocmd and borderchars stuff can be removed
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "TelescopeFindPre",
+            callback = function()
+                vim.opt_local.winborder = "none"
+                vim.api.nvim_create_autocmd("WinLeave", {
+                    once = true,
+                    callback = function()
+                        vim.opt_local.winborder = vim.g.BORDER
+                    end,
+                })
+            end,
+        })
+        local borderchars = {
+            "─",
+            "│",
+            "─",
+            "│",
+            "┌",
+            "┐",
+            "┘",
+            "└",
+        }
+
         telescope.setup({
             defaults = {
+                borderchars = borderchars,
                 vimgrep_arguments = {
                     "rg",
                     "--color=never",
@@ -158,10 +186,10 @@ return {
             },
             extensions = {
                 fzf = {
-                    fuzzy = true,                   -- false will only do exact matching
-                    override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true,    -- override the file sorter
-                    case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
                 },
             },
         })

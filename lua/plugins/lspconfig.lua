@@ -28,10 +28,6 @@ return {
         local lspconfig = require("lspconfig")
         local handlers = require("plugins.lsp.handlers")
 
-        require("lspconfig.ui.windows").default_options = {
-            border = "single",
-        }
-
         handlers.setup()
 
         local servers = {
