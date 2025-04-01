@@ -30,6 +30,7 @@ return {
             },
             completion = {
                 menu = { auto_show = true },
+                ghost_text = { enabled = false },
             },
         },
         completion = {
@@ -56,7 +57,7 @@ return {
                 auto_show_delay_ms = 500,
             },
             ghost_text = {
-                -- enabled = true,
+                enabled = false,
             },
         },
         signature = {

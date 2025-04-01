@@ -92,14 +92,6 @@ local function lsp_keymaps(bufnr)
         local new_config = not vim.diagnostic.config().virtual_lines
         vim.diagnostic.config({ virtual_lines = new_config })
     end, { desc = "Toggle diagnostic virtual_lines" })
-
-    -- local conform_ok, _ = pcall(require, "conform")
-    -- if not conform_ok then
-    --     vim.keymap.set({ "n", "v" }, "<leader>f", function() vim.lsp.buf.format({ async = true }) end,
-    --         {
-    --             noremap = true, silent = false, buffer = bufnr, desc = "Format"
-    --         })
-    -- end
 end
 
 local m = {}
@@ -107,30 +99,21 @@ local m = {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local blink_cmp_ok, blink_cmp = pcall(require, "blink.cmp")
-local ufo_ok, _ = pcall(require, "ufo")
-
 if blink_cmp_ok then
     m.capabilities = blink_cmp.get_lsp_capabilities(capabilities)
-end
-
-if ufo_ok then
-    m.capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-    }
 end
 
 m.setup = function()
     local icons = require("core.icons")
 
     local diagnostics_config = {
-        -- virtual_text = {
-        --     prefix = "",
-        --     current_line = true,
-        -- },
-        virtual_lines = {
+        virtual_text = {
+            prefix = "",
             current_line = true,
         },
+        -- virtual_lines = {
+        --     current_line = true,
+        -- },
         signs = {
             text = {
                 [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,

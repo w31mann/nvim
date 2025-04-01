@@ -41,6 +41,14 @@ return {
                     url =
                     "file:///home/user/src/mwd_internal/over-the-air/ucm/examples/configs/ucm-daemon/ucm.schema.json",
                 },
+                {
+                    description = "fs-reader config",
+                    fileMatch = { "fs-reader.json" },
+                    folderUri =
+                    "/home/user/src/mwd_internal/over-the-air/ucm/update-verification/fs-reader/examples/configs",
+                    url =
+                    "file:///home/user/src/mwd_internal/over-the-air/ucm/update-verification/fs-reader/examples/configs/fs-reader.schema.json",
+                },
             },
         },
     },
