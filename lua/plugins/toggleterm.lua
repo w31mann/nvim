@@ -5,35 +5,35 @@ return {
     config = function()
         local toggleterm = require("toggleterm")
 
-        if vim.uv.os_uname().sysname == "Darwin" then
-            vim.keymap.set("n", "†", function()
-                toggleterm.toggle(vim.v.count)
-            end, {
-                desc = "Open terminal",
-            })
-            vim.keymap.set("t", "µ", "<c-\\><c-n>", {
-                desc = "Terminal control mode",
-            })
-            vim.keymap.set("t", "†", function()
-                toggleterm.toggle_all()
-            end, {
-                desc = "Toggle all terminals",
-            })
-        else
-            vim.keymap.set("n", "<m-t>", function()
-                toggleterm.toggle(vim.v.count)
-            end, {
-                desc = "Open terminal",
-            })
-            vim.keymap.set("t", "<m-m>", "<c-\\><c-n>", {
-                desc = "Terminal control mode",
-            })
-            vim.keymap.set("t", "<m-t>", function()
-                toggleterm.toggle_all()
-            end, {
-                desc = "Toggle all terminals",
-            })
-        end
+        -- mac
+        vim.keymap.set("n", "†", function()
+            toggleterm.toggle(vim.v.count)
+        end, {
+            desc = "Open terminal",
+        })
+        vim.keymap.set("t", "µ", "<c-\\><c-n>", {
+            desc = "Terminal control mode",
+        })
+        vim.keymap.set("t", "†", function()
+            toggleterm.toggle_all()
+        end, {
+            desc = "Toggle all terminals",
+        })
+
+        -- linux
+        vim.keymap.set("n", "<m-t>", function()
+            toggleterm.toggle(vim.v.count)
+        end, {
+            desc = "Open terminal",
+        })
+        vim.keymap.set("t", "<m-m>", "<c-\\><c-n>", {
+            desc = "Terminal control mode",
+        })
+        vim.keymap.set("t", "<m-t>", function()
+            toggleterm.toggle_all()
+        end, {
+            desc = "Toggle all terminals",
+        })
 
         toggleterm.setup({
             size = function(term)

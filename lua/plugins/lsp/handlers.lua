@@ -65,23 +65,23 @@ local function lsp_keymaps(bufnr)
         desc = "List workspace folders",
     })
 
-    if vim.uv.os_uname().sysname == "Darwin" then
-        -- <option>-d
-        vim.keymap.set("n", "∂", function()
-            vim.diagnostic.jump({ count = 1, float = true })
-        end, { buffer = bufnr, desc = "Go to next diagnostic" })
-        -- <option>-D
-        vim.keymap.set("n", "™", function()
-            vim.diagnostic.jump({ count = -1, float = true })
-        end, { buffer = bufnr, desc = "Go to previous diagnostic" })
-    else
-        vim.keymap.set("n", "<m-d>", function()
-            vim.diagnostic.jump({ count = 1, float = true })
-        end, { buffer = bufnr, desc = "Go to next diagnostic" })
-        vim.keymap.set("n", "<m-D>", function()
-            vim.diagnostic.jump({ count = -1, float = true })
-        end, { buffer = bufnr, desc = "Go to previous diagnostic" })
-    end
+    -- mac
+    -- <option> - d
+    vim.keymap.set("n", "∂", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+    end, { buffer = bufnr, desc = "Go to next diagnostic" })
+    -- <option> - D
+    vim.keymap.set("n", "™", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+    end, { buffer = bufnr, desc = "Go to previous diagnostic" })
+
+    -- linux
+    vim.keymap.set("n", "<m-d>", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+    end, { buffer = bufnr, desc = "Go to next diagnostic" })
+    vim.keymap.set("n", "<m-D>", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+    end, { buffer = bufnr, desc = "Go to previous diagnostic" })
 
     vim.keymap.set("n", "<leader>iH", require("core.utils").toggleInlayHints, {
         buffer = bufnr,
