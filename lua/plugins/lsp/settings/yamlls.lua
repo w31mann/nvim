@@ -7,6 +7,11 @@ return {
             editor = {
                 tabSize = 4,
             },
+            schemaStore = {
+                enable = false,
+                url = "",
+            },
+            schemas = require("schemastore").yaml.schemas(),
         },
     },
 }

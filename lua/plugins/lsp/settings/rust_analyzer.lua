@@ -29,12 +29,6 @@ return {
                 command = "clippy",
             },
             lens = {
-                run = {
-                    enable = false,
-                },
-                debug = {
-                    enable = false,
-                },
                 references = {
                     adt = {
                         enable = true,
