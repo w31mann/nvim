@@ -1,4 +1,7 @@
 return {
-    -- cmd_env = { SHELLCHECK_PATH = '' },
-    filetypes = { "sh", "zsh" },
+    settings = {
+        ["bashIde"] = {
+            globPattern = vim.env.GLOB_PATTERN or "*@(.sh|.inc|.bash|.command|.zsh)",
+        },
+    },
 }
