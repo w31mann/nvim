@@ -9,7 +9,6 @@ return {
         vim.g.rustaceanvim = {
             -- LSP configuration
             server = {
-                on_attach = require("plugins.lsp.handlers").on_attach,
                 -- https://rust-analyzer.github.io/book/configuration.html
                 default_settings = {
                     cargo = {
