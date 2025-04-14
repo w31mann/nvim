@@ -11,7 +11,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swpkg",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swpkg/manifest.schema.json",
+                        "file:///home/user/src/mwd_internal/over-the-air/ucm/schemas/swpkg/manifest.schema.json",
                     },
                     {
                         name = "ucm_swcl",
@@ -20,7 +20,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swcl",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swcl/manifest.schema.json",
+                        "file:///home/user/src/mwd_internal/over-the-air/ucm/schemas/swcl/manifest.schema.json",
                     },
                     {
                         name = "ucm_cfg",
@@ -29,7 +29,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/ucm-daemon",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/ucm/examples/configs/ucm-daemon/ucm.schema.json",
+                        "file:///home/user/src/mwd_internal/over-the-air/ucm/schemas/ucm-daemon/ucm.schema.json",
                     },
                     {
                         name = "fd-reader_cfg",
@@ -38,7 +38,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/update-verification/fs-reader/examples/configs",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/ucm/update-verification/fs-reader/examples/configs/fs-reader.schema.json",
+                        "file:///home/user/src/mwd_internal/over-the-air/update-fs-reader/schemas/fs-reader.schema.json",
                     },
                 },
             }),
