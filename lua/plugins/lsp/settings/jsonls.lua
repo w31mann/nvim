@@ -1,3 +1,6 @@
+local root_patterns = { ".git" }
+local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, { upward = true })[1])
+
 return {
     settings = {
         json = {
@@ -11,7 +14,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swpkg",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/ucm/schemas/swpkg/manifest.schema.json",
+                        "file://" .. root_dir .. "/schemas/swpkg/manifest.schema.json",
                     },
                     {
                         name = "ucm_swcl",
@@ -20,7 +23,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/pkg-manifests/swcl",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/ucm/schemas/swcl/manifest.schema.json",
+                        "file://" .. root_dir .. "/schemas/swcl/manifest.schema.json",
                     },
                     {
                         name = "ucm_cfg",
@@ -29,7 +32,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/examples/configs/ucm-daemon",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/ucm/schemas/ucm-daemon/ucm.schema.json",
+                        "file://" .. root_dir .. "/schemas/ucm-daemon/ucm.schema.json",
                     },
                     {
                         name = "fd-reader_cfg",
@@ -38,7 +41,7 @@ return {
                         -- folderUri =
                         -- "/home/user/src/mwd_internal/over-the-air/ucm/update-verification/fs-reader/examples/configs",
                         url =
-                        "file:///home/user/src/mwd_internal/over-the-air/update-fs-reader/schemas/fs-reader.schema.json",
+                        "file://" .. root_dir .. "/schemas/fs-reader.schema.json",
                     },
                 },
             }),
