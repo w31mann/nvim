@@ -83,4 +83,22 @@ function utils.toggleInlayHints()
     end
 end
 
+function utils.project_root(root_patterns)
+    root_patterns = root_patterns or { ".git" }
+
+    local current_buf_path = vim.api.nvim_buf_get_name(0)
+    if current_buf_path == "" then
+        return nil
+    end
+
+    local current_dir = vim.fs.dirname(current_buf_path)
+    local root_file = vim.fs.find(root_patterns, { upward = true, path = current_dir })[1]
+
+    if root_file then
+        return vim.fs.dirname(root_file)
+    else
+        return nil
+    end
+end
+
 return utils
