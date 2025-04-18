@@ -1,8 +1,8 @@
 vim.loader.enable()
 
-require("core.settings")
-require("core.keybindings")
-require("core.autocommands")
+require("core.options")
+require("core.keymaps")
+require("core.autocmds")
 require("core.utils")
 
 -- bootstrap lazy plugin manager
