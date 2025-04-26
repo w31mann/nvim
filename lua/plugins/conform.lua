@@ -26,7 +26,7 @@ return {
                 cpp = { "clang_format" },
                 lua = { "stylua" },
                 markdown = { "prettier" },
-                python = { "isort", "black" },
+                -- python = { "isort", "black" },
                 rust = { "rustfmt", lsp_format = "fallback" },
                 sh = { "beautysh", "shellharden" },
                 ["*"] = { "trim_newlines", "trim_whitespace" },

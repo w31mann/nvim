@@ -27,11 +27,11 @@ return {
             "bashls",
             "clangd",
             "neocmake",
-            "dockerls",
+            -- "dockerls",
             "jsonls",
             "marksman",
             "lua_ls",
-            "pyright",
+            -- "pyright",
             "taplo",
             "yamlls",
         }
