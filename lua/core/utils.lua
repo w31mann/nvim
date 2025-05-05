@@ -24,8 +24,8 @@ function utils.toggleQuickfixWindow()
 end
 
 function utils.toggleSpellChecking()
-    vim.opt.spell = not (vim.opt.spell:get())
-    if vim.opt.spell:get() then
+    vim.opt_local.spell = not (vim.opt_local.spell:get())
+    if vim.opt_local.spell:get() then
         vim.notify("Spelling enabled", vim.log.levels.INFO)
     else
         vim.notify("Spelling disabled", vim.log.levels.INFO)
@@ -99,6 +99,21 @@ function utils.project_root(root_patterns)
     else
         return nil
     end
+end
+
+function utils.color_palette()
+    local palette
+
+    local catppuccin_ok, catppuccin = pcall(require, "catppucin.palettes")
+    local tokyonight_ok, tokyonight = pcall(require, "tokyonight.colors")
+
+    if catppuccin_ok then
+        palette = catppuccin().get_palette()
+    elseif tokyonight_ok then
+        palette = tokyonight.setup()
+    end
+
+    return palette
 end
 
 return utils

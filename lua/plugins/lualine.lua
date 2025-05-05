@@ -3,7 +3,8 @@
 return {
     "hoob3rt/lualine.nvim",
     config = function()
-        local palette = require("catppuccin.palettes").get_palette()
+        local palette = require("core.utils")
+
         local colors = {
             error = palette.red,
             warn = palette.yellow,
@@ -16,6 +17,10 @@ return {
         }
 
         local function whitespaces()
+            if vim.bo.buftype == "terminal" then
+                return ""
+            end
+
             if vim.api.nvim_buf_line_count(0) > 10000 then
                 return ""
             end
