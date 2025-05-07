@@ -22,6 +22,7 @@ return {
 
         -- ensure LSP servers to be installed
         mason_lspconfig.setup({
+            automatic_enable = false,
             automatic_installation = false,
             ensure_installed = {
                 -- example on how to select specific version:
