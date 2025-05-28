@@ -7,7 +7,11 @@ return {
 
         lsp_setup.init()
 
+        local lsp_attach_augroup = vim.api.nvim_create_augroup("lsp_attach_augroup", {
+            clear = true,
+        })
         vim.api.nvim_create_autocmd("LspAttach", {
+            group = lsp_attach_augroup,
             callback = function(ev)
                 lsp_setup.bindings(ev.buf)
 
@@ -16,11 +20,11 @@ return {
                 end
 
                 local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
                 if client ~= nil and client:supports_method("textDocument/inlayHint", ev.buf) then
                     vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
                 end
             end,
+            desc = "Setup a LSP client on attach",
         })
 
         local servers = {
