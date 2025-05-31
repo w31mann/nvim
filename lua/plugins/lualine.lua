@@ -16,12 +16,24 @@ return {
             accent = palette.maroon,
         }
 
-        local function whitespaces()
-            if vim.bo.buftype == "terminal" then
-                return ""
-            end
+        local function buf_policy_check()
+            local forbidden_buftypes = {
+                ["acwrite"] = true,
+                ["help"] = true,
+                ["lazy"] = true,
+                ["mason"] = true,
+                ["nofile"] = true,
+                ["prompt"] = true,
+                ["terminal"] = true,
+            }
 
-            if vim.api.nvim_buf_line_count(0) > 10000 then
+            return not forbidden_buftypes[vim.bo.buftype]
+                and not vim.bo.binary
+                and vim.api.nvim_buf_line_count(0) < 10000
+        end
+
+        local function whitespaces()
+            if not buf_policy_check() then
                 return ""
             end
 
@@ -37,7 +49,7 @@ return {
         end
 
         local function indentation_file()
-            if vim.api.nvim_buf_line_count(0) > 10000 then
+            if not buf_policy_check() then
                 return ""
             end
 
@@ -61,7 +73,7 @@ return {
         end
 
         local function indentation_line()
-            if vim.api.nvim_buf_line_count(0) > 10000 then
+            if not buf_policy_check() then
                 return ""
             end
 
