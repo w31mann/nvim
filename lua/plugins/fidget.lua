@@ -9,6 +9,12 @@ return {
             progress = {
                 suppress_on_insert = true,
             },
+            notification = {
+                window = {
+                    -- required by catppuccin
+                    winblend = 0,
+                },
+            },
         })
 
         local fidget_augroup = vim.api.nvim_create_augroup("fidget_augroup", {

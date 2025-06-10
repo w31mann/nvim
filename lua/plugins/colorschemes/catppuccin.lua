@@ -21,12 +21,7 @@ return {
             no_italic = true,
             no_underline = true,
             integrations = {
-                blink_cmp = true,
                 fidget = true,
-                illuminate = {
-                    enabled = true,
-                    lsp = true,
-                },
                 mason = true,
             },
             custom_highlights = function(color)
