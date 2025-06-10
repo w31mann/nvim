@@ -9,5 +9,11 @@ return {
         vim.keymap.set("n", "<leader>u", function()
             require("treesitter-context").go_to_context(vim.v.count1)
         end, { desc = "Jump to outer context" })
+        vim.keymap.set(
+            "n",
+            "<leader>tc",
+            require("treesitter-context").toggle,
+            { desc = "Toggle treesitter context" }
+        )
     end,
 }
