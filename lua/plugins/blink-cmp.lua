@@ -18,12 +18,6 @@ return {
         },
         sources = {
             default = { "lsp", "buffer", "snippets", "path", "cmdline" },
-            lsp = {
-                score_offset = 10,
-            },
-            buffer = {
-                score_offset = 5,
-            },
         },
         cmdline = {
             keymap = {
@@ -61,7 +55,6 @@ return {
             prebuilt_binaries = {
                 download = false,
             },
-            sort = { "score", "exact", "sort_text" },
         },
     },
 }
