@@ -1,6 +1,11 @@
 local indent = 4
 local textwidth = 100
 
+local undodir = vim.fn.stdpath("state") .. "/undodir"
+if vim.fn.isdirectory(undodir) == 0 then
+    vim.fn.mkdir(undodir, "p")
+end
+
 vim.g.BORDER = "single"
 
 vim.g.netrw_altv = 1
@@ -34,9 +39,11 @@ vim.opt.listchars:append("eol:↴")
 vim.opt.listchars:append("lead:⋅")
 vim.opt.listchars:append("space:⋅")
 vim.opt.number = true
+vim.opt.path:append("**")
 vim.opt.pumheight = 10
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
+vim.opt.selection = "exclusive"
 vim.opt.sidescrolloff = 4
 vim.opt.signcolumn = "yes"
 vim.opt.shiftround = true
@@ -56,6 +63,8 @@ vim.opt.textwidth = textwidth
 vim.opt.title = true
 vim.opt.titlestring = "%t%( %M%)%( (%{expand('%:~:.:h')})%)"
 vim.opt.updatetime = 300
+vim.opt.undofile = true
+vim.opt.undodir = undodir
 vim.opt.whichwrap:append("<,>,[,]")
 vim.opt.winborder = vim.g.BORDER
 vim.opt.wrap = false

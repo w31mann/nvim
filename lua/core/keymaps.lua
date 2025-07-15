@@ -1,5 +1,6 @@
 -- leader key is space
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.keymap.set({ "i", "c" }, "<c-c>", "<ESC>", {
     desc = "Ctrl-c is same as Esc",
@@ -168,6 +169,11 @@ vim.keymap.set("n", "Q", "@qj", {
 vim.keymap.set("x", "Q", "<cmd>norm @q<cr>", {
     desc = "Playback the macro from the q register on a visual selection",
 })
+vim.keymap.set("n", "<leader>pa", function()
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path)
+    print("file:", path)
+end, { desc = "Copy file system path of current file" })
 
 --mac
 vim.keymap.set("n", "ˆ", "<c-w>k", {
