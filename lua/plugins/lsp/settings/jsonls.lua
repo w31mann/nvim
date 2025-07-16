@@ -21,6 +21,11 @@ return {
                     url = "file://" .. repo_root .. "/schemas/ucm-daemon/ucm.schema.json",
                 },
                 {
+                    description = "BootCtl config",
+                    fileMatch = { "bootctl**.json" },
+                    url = "file://" .. repo_root .. "/schemas/bootctl-daemon/bootctl.schema.json",
+                },
+                {
                     description = "fs-reader config",
                     fileMatch = { "fs-reader.json" },
                     url = "file://" .. repo_root .. "/schemas/fs-reader.schema.json",
