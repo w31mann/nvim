@@ -100,6 +100,7 @@ return {
                 globalstatus = true,
                 icons_enabled = true,
             },
+            extensions = { "toggleterm" },
             sections = {
                 lualine_a = {
                     {
@@ -110,6 +111,9 @@ return {
                     },
                 },
                 lualine_b = {
+                    {
+                        "toggleterm"
+                    },
                     {
                         "filename",
                         file_status = true,
@@ -150,6 +154,9 @@ return {
                     "filetype",
                 },
                 lualine_y = {
+                    {
+                        "searchcount",
+                    },
                     {
                         "progress",
                         color = { fg = colors.white, bg = colors.bg0 },
