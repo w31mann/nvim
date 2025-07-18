@@ -27,7 +27,7 @@ return {
             custom_highlights = function(color)
                 -- colors - https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/macchiato.lua
                 return {
-                    WinSeparator = { fg = color.blue },
+                    WinSeparator = { fg = color.surface1 },
                     Folded = { bg = color.surface0 },
                 }
             end,
