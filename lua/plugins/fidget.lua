@@ -11,8 +11,8 @@ return {
             },
             notification = {
                 window = {
-                    -- required by catppuccin
-                    winblend = 0,
+                    -- required by catppuccin: winblend = 0
+                    winblend = 100,
                 },
             },
         })

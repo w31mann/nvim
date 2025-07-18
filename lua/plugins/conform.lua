@@ -21,6 +21,8 @@ return {
     config = function()
         local conform = require("conform")
 
+        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
         conform.setup({
             formatters_by_ft = {
                 cpp = { "clang_format" },
