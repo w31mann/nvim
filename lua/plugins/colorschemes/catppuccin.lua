@@ -9,26 +9,26 @@ return {
     config = function()
         require("catppuccin").setup({
             flavour = "macchiato", -- latte, frappe, macchiato, mocha
-            background = {
-                -- :h background
-                light = "latte",
-                dark = "macchiato",
-            },
-            styles = {
-                conditionals = {},
-            },
             term_colors = true,
             no_italic = true,
             no_underline = true,
             integrations = {
                 fidget = true,
                 mason = true,
+                blink_cmp = true,
+                telescope = {
+                    style = "nvchad_outlined",
+                },
             },
-            custom_highlights = function(color)
+            custom_highlights = function(colors)
                 -- colors - https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/macchiato.lua
                 return {
-                    WinSeparator = { fg = color.surface1 },
-                    Folded = { bg = color.surface0 },
+                    WinSeparator = { fg = colors.surface1 },
+                    Folded = { bg = colors.surface0 },
+                    Pmenu = { bg = colors.base, fg = colors.surface1 },
+                    NormalFloat = { bg = colors.base, fg = colors.text },
+                    BlinkCmpDocBorder = { bg = colors.base, fg = colors.surface1 },
+                    BlinkCmpDocSeparator = { bg = colors.base, fg = colors.surface1 },
                 }
             end,
         })
