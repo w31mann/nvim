@@ -174,31 +174,3 @@ vim.keymap.set("n", "<leader>pa", function()
     vim.fn.setreg("+", path)
     print("file:", path)
 end, { desc = "Copy file system path of current file" })
-
---mac
-vim.keymap.set("n", "ˆ", "<c-w>k", {
-    desc = "Move focus to split above",
-})
-vim.keymap.set("n", "ı", "<c-w>j", {
-    desc = "Move focus to split below",
-})
-vim.keymap.set("n", "Ó", "<c-w>h", {
-    desc = "Move focus to split left",
-})
-vim.keymap.set("n", "ﬂ", "<c-w>l", {
-    desc = "Move focus to split right",
-})
-
--- linux
-vim.keymap.set("n", "<m-s-k>", "<c-w>k", {
-    desc = "Move focus to split above",
-})
-vim.keymap.set("n", "<m-s-j>", "<c-w>j", {
-    desc = "Move focus to split below",
-})
-vim.keymap.set("n", "<m-s-h>", "<c-w>h", {
-    desc = "Move focus to split left",
-})
-vim.keymap.set("n", "<m-s-l>", "<c-w>l", {
-    desc = "Move focus to split right",
-})
