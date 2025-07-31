@@ -68,11 +68,12 @@ return {
             "<leader>sb",
             function()
                 require("telescope.builtin").buffers({
+                    ignore_current_buffer = true,
                     sort_lastused = true,
                     sort_mru = true,
                 })
             end,
-            desc = "Search buffer",
+            desc = "Search open buffers",
         },
         {
             "<leader>sd",

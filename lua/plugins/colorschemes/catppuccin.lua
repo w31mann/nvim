@@ -15,7 +15,7 @@ return {
             integrations = {
                 fidget = true,
                 mason = true,
-                blink_cmp = true,
+                blink_cmp = { enabled = true, style = "solid" },
                 telescope = {
                     style = "nvchad_outlined",
                 },
