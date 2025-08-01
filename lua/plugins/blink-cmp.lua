@@ -2,8 +2,8 @@
 
 return {
     "saghen/blink.cmp",
-    -- version = "1.*",
-    build = "cargo build --release --locked",
+    version = "1.*",
+    -- build = "cargo build --release --locked",
     event = { "CmdlineEnter", "InsertEnter" },
     dependencies = {
         {
@@ -52,9 +52,9 @@ return {
         },
         fuzzy = {
             implementation = "prefer_rust_with_warning",
-            prebuilt_binaries = {
-                download = false,
-            },
+            -- prebuilt_binaries = {
+            --     download = true,
+            -- },
         },
     },
 }
