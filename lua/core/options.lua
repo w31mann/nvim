@@ -6,8 +6,6 @@ if vim.fn.isdirectory(undodir) == 0 then
     vim.fn.mkdir(undodir, "p")
 end
 
-vim.g.BORDER = "single"
-
 vim.g.netrw_altv = 1
 vim.g.netrw_alto = 0
 vim.g.netrw_banner = 0
@@ -66,7 +64,7 @@ vim.opt.updatetime = 300
 vim.opt.undofile = true
 vim.opt.undodir = undodir
 vim.opt.whichwrap:append("<,>,[,]")
-vim.opt.winborder = vim.g.BORDER
+vim.opt.winborder = "single"
 vim.opt.wrap = false
 vim.opt.writebackup = false
 
