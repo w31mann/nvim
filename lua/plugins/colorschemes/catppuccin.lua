@@ -12,6 +12,10 @@ return {
             term_colors = true,
             no_italic = true,
             no_underline = true,
+            float = {
+                transparent = true,
+                solid = true,
+            },
             integrations = {
                 fidget = true,
                 mason = true,
@@ -25,8 +29,8 @@ return {
                 return {
                     WinSeparator = { fg = colors.surface1 },
                     Folded = { bg = colors.surface0 },
-                    NormalFloat = { bg = colors.base, fg = colors.text },
-                    FloatBorder = { bg = colors.base, fg = colors.text },
+                    -- NormalFloat = { bg = colors.base, fg = colors.text },
+                    -- FloatBorder = { bg = colors.base, fg = colors.text },
                     Pmenu = { bg = colors.base, fg = colors.surface1 },
                     BlinkCmpDocBorder = { bg = colors.base, fg = colors.surface1 },
                     BlinkCmpDocSeparator = { bg = colors.base, fg = colors.surface1 },
