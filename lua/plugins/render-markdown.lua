@@ -1,3 +1,5 @@
+-- render-markdown - https://github.com/MeanderingProgrammer/render-markdown.nvim
+
 return {
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = true,
@@ -16,6 +18,9 @@ return {
                     code_background = true,
                     code_border = true,
                 },
+            },
+            code = {
+                sign = false,
             },
         })
 
