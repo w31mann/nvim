@@ -1,5 +1,8 @@
+-- mini-ai - https://github.com/nvim-mini/mini.ai
+-- still needed with nvim 0.12?
+
 return {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     version = false,
     dependencies = {
         -- treesitter-context - https://github.com/nvim-treesitter/nvim-treesitter-context
