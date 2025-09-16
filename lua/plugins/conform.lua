@@ -6,7 +6,8 @@ return {
     config = function()
         local conform = require("conform")
 
-        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+        -- e.g., used with `gq`
+        -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
         conform.setup({
             formatters_by_ft = {

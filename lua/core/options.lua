@@ -28,6 +28,7 @@ vim.opt.history = 500
 vim.opt.ignorecase = true
 vim.opt.iskeyword:append("-")
 vim.opt.inccommand = "split"
+vim.opt.laststatus = 3
 vim.opt.lazyredraw = true
 vim.opt.listchars:append("trail:⋅")
 vim.opt.listchars:append("precedes:«")

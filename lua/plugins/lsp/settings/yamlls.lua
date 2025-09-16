@@ -1,3 +1,5 @@
+local repo_root = require("core.utils").project_root()
+
 return {
     settings = {
         yaml = {
@@ -11,7 +13,9 @@ return {
                 enable = false,
                 url = "",
             },
-            schemas = require("schemastore").yaml.schemas(),
+            schemas = {
+                [repo_root .. "/configs/schemas/profiles.json"] = repo_root .. "/configs/profiles.yaml",
+            },
         },
     },
 }
