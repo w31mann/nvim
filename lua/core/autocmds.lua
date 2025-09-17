@@ -56,6 +56,10 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "ModeChanged" }, {
 })
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
+        if vim.bo.filetype == "oil" or vim.api.nvim_buf_get_name(0) == "" then
+            return
+        end
+
         local dir = vim.fn.expand("<afile>:p:h")
         if vim.fn.isdirectory(dir) == 0 then
             vim.fn.mkdir(dir, "p")
