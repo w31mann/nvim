@@ -1,8 +1,9 @@
 -- avante - https://github.com/yetone/avante.nvim
 
 return {
-    "yetone/avante.nvim",
-    tag = "v0.0.27", -- pin version to fix https://github.com/yetone/avante.nvim/issues/2689
+    "w31mann/avante.nvim",
+    -- tag = "v0.0.27", -- pin version to fix https://github.com/yetone/avante.nvim/issues/2689
+    branch = "confirmation-win",
     build = "make",
     version = false,
     dependencies = {
@@ -34,14 +35,14 @@ return {
         provider = "copilot",
         providers = {
             copilot = {
-                model = "gpt-4.1",
-                -- model = "claude-3.7-sonnet",
+                model = "claude-sonnet-4",
+                -- model = "claude-sonnet-4.5",
             },
         },
         web_search_engine = {
             -- tavily, serpapi, google, kagi, brave, or searxng
-            -- provider = "tavily",
-            provider = "google",
+            provider = "tavily",
+            -- provider = "google",
         },
         windows = {
             width = 45,
