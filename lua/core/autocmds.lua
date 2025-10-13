@@ -68,3 +68,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     group = cursorword_augroup,
     desc = "Create directories when saving files",
 })
+
+local colorcolumn_augroup = vim.api.nvim_create_augroup("colorcolumn_augroup", {
+    clear = true,
+})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {
+        "Avante",
+        "AvanteInput",
+        "AvanteSelectedFiles",
+        "AvanteTodos",
+        "help",
+        "terminal",
+        "qf",
+    },
+    callback = function()
+        vim.opt_local.colorcolumn = ""
+    end,
+    group = colorcolumn_augroup,
+    desc = "Disable colorcolumn for specific filetypes",
+})
