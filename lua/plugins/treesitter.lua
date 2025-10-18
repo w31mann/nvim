@@ -32,6 +32,7 @@ return {
                 "ini",
                 "json",
                 "jq",
+                "kdl",
                 "latex",
                 "lua",
                 "make",
