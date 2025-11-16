@@ -7,6 +7,12 @@ return {
             -- Port will be auto-discovered using lsof
             -- If no instance found, provider will auto-start one
             auto_reload = true,
+            provider = {
+                snacks = {
+                    -- Use a unique ID to prevent multiple instances
+                    id = "opencode_main",
+                },
+            },
         }
 
         -- Required for auto_reload
