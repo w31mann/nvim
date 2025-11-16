@@ -11,6 +11,16 @@ return {
                 snacks = {
                     -- Use a unique ID to prevent multiple instances
                     id = "opencode_main",
+                    -- Ensure OpenCode terminal uses full window size
+                    win = {
+                        style = "terminal",
+                        position = "right",
+                        width = 0.4,
+                        height = 1.0,
+                        wo = {
+                            winbar = "",
+                        },
+                    },
                 },
             },
         }
