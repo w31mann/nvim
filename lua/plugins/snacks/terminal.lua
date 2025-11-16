@@ -13,22 +13,50 @@ M.config = {
     },
 }
 
+-- Filetypes to exclude from toggle all terminals
+local toggle_exception_filetypes = {
+    "opencode_terminal",
+}
+
 -- Toggle all terminals: hide if any visible, show all if none visible
+-- Excludes filetypes listed in toggle_exception_filetypes
 local function toggle_all_terminals()
     local terminals = Snacks.terminal.list()
     if #terminals == 0 then
         return
     end
 
-    local any_visible = false
+    -- Filter out terminals with filetypes in exceptions list
+    local user_terminals = {}
     for _, term in ipairs(terminals) do
+        if term.buf and vim.api.nvim_buf_is_valid(term.buf) then
+            local filetype = vim.api.nvim_get_option_value("filetype", { buf = term.buf })
+            local is_exception = false
+            for _, exception_ft in ipairs(toggle_exception_filetypes) do
+                if filetype == exception_ft then
+                    is_exception = true
+                    break
+                end
+            end
+            if not is_exception then
+                table.insert(user_terminals, term)
+            end
+        end
+    end
+
+    if #user_terminals == 0 then
+        return
+    end
+
+    local any_visible = false
+    for _, term in ipairs(user_terminals) do
         if term.win and vim.api.nvim_win_is_valid(term.win) then
             any_visible = true
             break
         end
     end
 
-    for _, term in ipairs(terminals) do
+    for _, term in ipairs(user_terminals) do
         if any_visible then
             term:hide()
         else

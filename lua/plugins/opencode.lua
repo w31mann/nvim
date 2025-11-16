@@ -2,10 +2,16 @@
 
 return {
     "NickvanDyke/opencode.nvim",
-    dependencies = {
-        { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
-    },
     config = function()
+        vim.g.opencode_opts = {
+            -- Port will be auto-discovered using lsof
+            -- If no instance found, provider will auto-start one
+            auto_reload = true,
+        }
+
+        -- Required for auto_reload
+        vim.o.autoread = true
+
         vim.keymap.set({ "n", "x" }, "øå", function()
             require("opencode").ask("@this: ", { submit = true })
         end, { desc = "Ask opencode" })

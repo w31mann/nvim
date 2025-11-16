@@ -79,6 +79,7 @@ vim.api.nvim_create_autocmd("FileType", {
         "AvanteSelectedFiles",
         "AvanteTodos",
         "help",
+        "opencode_terminal",
         "terminal",
         "qf",
     },
