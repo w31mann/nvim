@@ -23,6 +23,10 @@ return {
                 telescope = {
                     style = "nvchad_outlined",
                 },
+                snacks = {
+                    enabled = true,
+                    indent_scope_color = "lavender", -- Matches CursorLineNr color
+                },
             },
             custom_highlights = function(colors)
                 -- colors - https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/macchiato.lua

@@ -90,6 +90,18 @@ return {
             return ""
         end
 
+        local function snacks_terminal()
+            -- Check if current buffer is a snacks terminal
+            if vim.bo.filetype == "snacks_terminal" then
+                local buf = vim.api.nvim_get_current_buf()
+                local term_id = vim.b[buf].snacks_terminal and vim.b[buf].snacks_terminal.id
+                if term_id then
+                    return string.format("Terminal #%d", term_id)
+                end
+            end
+            return ""
+        end
+
         local icons = require("core.icons")
 
         require("lualine").setup({
@@ -100,7 +112,7 @@ return {
                 globalstatus = true,
                 icons_enabled = true,
             },
-            extensions = { "toggleterm" },
+            extensions = {},
             sections = {
                 lualine_a = {
                     {
@@ -112,7 +124,10 @@ return {
                 },
                 lualine_b = {
                     {
-                        "toggleterm"
+                        snacks_terminal,
+                        cond = function()
+                            return vim.bo.filetype == "snacks_terminal"
+                        end,
                     },
                     {
                         "filename",
