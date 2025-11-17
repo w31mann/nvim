@@ -110,7 +110,7 @@ local function show_remembered_terminals(terminals)
 end
 
 -- Toggle all terminals with sticky visibility behavior
-local function toggle_all_terminals()
+function M.toggle_all_terminals()
     local terminals = Snacks.terminal.list()
 
     -- If no terminals exist, create one
@@ -136,42 +136,27 @@ local function toggle_all_terminals()
 end
 
 -- Helper for smart terminal toggle (count-aware)
-local function smart_terminal_toggle()
+function M.smart_terminal_toggle()
     local count = vim.v.count
     if count > 0 then
         Snacks.terminal.toggle(nil, { count = count })
     else
-        toggle_all_terminals()
+        M.toggle_all_terminals()
     end
 end
 
--- Setup keybindings and autocmds
+-- Setup autocmds (keybindings moved to lazy.nvim keys spec)
 function M.setup()
-    -- Global keybindings
-    -- Mac
-    vim.keymap.set("n", "†", smart_terminal_toggle, {
-        desc = "Toggle all terminals (or specific with count)",
-    })
-    vim.keymap.set("t", "µ", "<c-\\><c-n>", { desc = "Terminal normal mode" })
-    vim.keymap.set("t", "†", toggle_all_terminals, { desc = "Toggle all terminals" })
-
-    -- Linux
-    vim.keymap.set("n", "<m-t>", smart_terminal_toggle, {
-        desc = "Toggle all terminals (or specific with count)",
-    })
-    vim.keymap.set("t", "<m-m>", "<c-\\><c-n>", { desc = "Terminal normal mode" })
-    vim.keymap.set("t", "<m-t>", toggle_all_terminals, { desc = "Toggle all terminals" })
-
     -- Buffer-local keybindings for terminal buffers
     -- When in a terminal: no count = toggle all, with count = toggle specific
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "snacks_terminal",
         callback = function(event)
-            vim.keymap.set("n", "†", smart_terminal_toggle, {
+            vim.keymap.set("n", "†", M.smart_terminal_toggle, {
                 buffer = event.buf,
                 desc = "Toggle all terminals (or specific with count)",
             })
-            vim.keymap.set("n", "<m-t>", smart_terminal_toggle, {
+            vim.keymap.set("n", "<m-t>", M.smart_terminal_toggle, {
                 buffer = event.buf,
                 desc = "Toggle all terminals (or specific with count)",
             })
