@@ -1,20 +1,27 @@
 -- conform.nvim - https://github.com/stevearc/conform.nvim
 
+local function setup_keymaps()
+    vim.keymap.set({ "n", "v" }, "<leader>f", function()
+        require("conform").format({
+            async = false,
+            lsp_format = "last",
+        })
+    end, { desc = "Format file or range (in visual mode)" })
+end
+
 return {
     "stevearc/conform.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    keys = {
+        { "<leader>f", mode = { "n", "v" }, desc = "Format file or range (in visual mode)" },
+    },
     config = function()
         local conform = require("conform")
-
-        -- e.g., used with `gq`
-        -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
         conform.setup({
             formatters_by_ft = {
                 cpp = { "clang_format" },
                 lua = { "stylua" },
                 markdown = { "prettier" },
-                -- python = { "isort", "black" },
                 rust = { "rustfmt", lsp_format = "fallback" },
                 sh = { "beautysh", "shellharden" },
                 ["*"] = { "trim_newlines", "trim_whitespace" },
@@ -36,11 +43,6 @@ return {
             },
         }
 
-        vim.keymap.set({ "n", "v" }, "<leader>f", function()
-            conform.format({
-                async = false,
-                lsp_format = "last",
-            })
-        end, { desc = "Format file or range (in visual mode)" })
+        setup_keymaps()
     end,
 }

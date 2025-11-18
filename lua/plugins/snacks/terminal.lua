@@ -145,10 +145,25 @@ function M.smart_terminal_toggle()
     end
 end
 
--- Setup autocmds (keybindings moved to lazy.nvim keys spec)
+-- Setup keybindings and autocmds
 function M.setup()
+    -- Terminal keybindings (Mac)
+    vim.keymap.set("n", "†", M.smart_terminal_toggle, {
+        desc = "Toggle all terminals (or specific with count)",
+    })
+    vim.keymap.set("t", "†", M.toggle_all_terminals, {
+        desc = "Toggle all terminals",
+    })
+
+    -- Terminal keybindings (Linux)
+    vim.keymap.set("n", "<m-t>", M.smart_terminal_toggle, {
+        desc = "Toggle all terminals (or specific with count)",
+    })
+    vim.keymap.set("t", "<m-t>", M.toggle_all_terminals, {
+        desc = "Toggle all terminals",
+    })
+
     -- Buffer-local keybindings for terminal buffers
-    -- When in a terminal: no count = toggle all, with count = toggle specific
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "snacks_terminal",
         callback = function(event)
@@ -166,7 +181,7 @@ function M.setup()
     -- Auto-close terminal buffers when quitting to allow Neovim to exit
     vim.api.nvim_create_autocmd("QuitPre", {
         callback = function()
-            local terminals = Snacks.terminal.list()
+            local terminals = require("snacks").terminal.list()
             for _, term in ipairs(terminals) do
                 if term.buf and vim.api.nvim_buf_is_valid(term.buf) then
                     vim.api.nvim_buf_delete(term.buf, { force = true })

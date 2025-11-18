@@ -42,54 +42,45 @@ local function setup_adapters()
 end
 
 local function setup_keymaps()
-    vim.keymap.set(
-        "n",
-        "<leader>dt",
-        require("dap").toggle_breakpoint,
-        { desc = "Toggle Breakpoint" }
-    )
-    vim.keymap.set("n", "<leader>dc", require("dap").continue, { desc = "Continue debug session" })
-    vim.keymap.set("n", "<leader>dC", require("dap").run_to_cursor, { desc = "Run To Cursor" })
+    local dap = require("dap")
+
+    vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+    vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue debug session" })
+    vim.keymap.set("n", "<leader>dC", dap.run_to_cursor, { desc = "Run To Cursor" })
     vim.keymap.set("n", "<leader>ds", function()
-        require("dap").continue({ new = true })
+        dap.continue({ new = true })
     end, { desc = "Start debug session" })
-    vim.keymap.set("n", "<leader>di", require("dap").step_into, { desc = "Step Into" })
-    vim.keymap.set("n", "<leader>do", require("dap").step_over, { desc = "Step Over" })
-    vim.keymap.set("n", "<leader>db", require("dap").step_back, { desc = "Step Back" })
-    vim.keymap.set("n", "<leader>du", require("dap").step_out, { desc = "Step Out" })
+    vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step Into" })
+    vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Step Over" })
+    vim.keymap.set("n", "<leader>db", dap.step_back, { desc = "Step Back" })
+    vim.keymap.set("n", "<leader>du", dap.step_out, { desc = "Step Out" })
     vim.keymap.set("n", "<leader>dL", function()
-        require("dap").list_breakpoints()
+        dap.list_breakpoints()
         require("core.utils").toggleQuickfixWindow()
     end, { desc = "List breakpoints" })
-    vim.keymap.set(
-        "n",
-        "<leader>dB",
-        require("dap").clear_breakpoints,
-        { desc = "Clear all breakpoints" }
-    )
-    -- vim.keymap.set("n", "<leader>dd", require("dap").disconnect, { desc = "Disconnect" })
-    -- vim.keymap.set("n", "<leader>dg", require("dap").session, { desc = "Get Session" })
-    vim.keymap.set("n", "<leader>dp", require("dap").pause, { desc = "Pause" })
-    -- vim.keymap.set("n", "<leader>dr", require("dap").repl.toggle, { desc = "Toggle Repl" })
-    vim.keymap.set(
-        "n",
-        "<leader>dr",
-        require("dap").restart,
-        { desc = "Restart the debug session" }
-    )
-    -- vim.keymap.set("n", "<leader>dq", require("dap").close, { desc = "Quit" })
-    vim.keymap.set(
-        "n",
-        "<leader>dq",
-        require("dap").terminate,
-        { desc = "Terminate the debug session" }
-    )
+    vim.keymap.set("n", "<leader>dB", dap.clear_breakpoints, { desc = "Clear all breakpoints" })
+    vim.keymap.set("n", "<leader>dp", dap.pause, { desc = "Pause" })
+    vim.keymap.set("n", "<leader>dr", dap.restart, { desc = "Restart the debug session" })
+    vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Terminate the debug session" })
 end
 
 return {
     "mfussenegger/nvim-dap",
-    event = "VeryLazy",
-    ft = { "rust", "cpp", "c" },
+    keys = {
+        { "<leader>dt", mode = "n", desc = "Toggle Breakpoint" },
+        { "<leader>dc", mode = "n", desc = "Continue debug session" },
+        { "<leader>dC", mode = "n", desc = "Run To Cursor" },
+        { "<leader>ds", mode = "n", desc = "Start debug session" },
+        { "<leader>di", mode = "n", desc = "Step Into" },
+        { "<leader>do", mode = "n", desc = "Step Over" },
+        { "<leader>db", mode = "n", desc = "Step Back" },
+        { "<leader>du", mode = "n", desc = "Step Out" },
+        { "<leader>dL", mode = "n", desc = "List breakpoints" },
+        { "<leader>dB", mode = "n", desc = "Clear all breakpoints" },
+        { "<leader>dp", mode = "n", desc = "Pause" },
+        { "<leader>dr", mode = "n", desc = "Restart the debug session" },
+        { "<leader>dq", mode = "n", desc = "Terminate the debug session" },
+    },
     dependencies = {
         {
             -- nvim-dap-ui - https://github.com/rcarriga/nvim-dap-ui

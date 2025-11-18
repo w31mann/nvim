@@ -47,7 +47,7 @@ M.config = {
 function M.setup()
     -- <leader>sf - Find files (exclude .git, target, build like Telescope)
     vim.keymap.set("n", "<leader>sf", function()
-        Snacks.picker.files({
+        require("snacks").picker.files({
             hidden = true,
             follow = true,
             exclude = { ".git", "target", "build" },
@@ -56,7 +56,7 @@ function M.setup()
 
     -- <leader>sF - Find ALL files (no ignore, no exclude)
     vim.keymap.set("n", "<leader>sF", function()
-        Snacks.picker.files({
+        require("snacks").picker.files({
             hidden = true,
             ignored = true,
             follow = true,
@@ -65,17 +65,17 @@ function M.setup()
 
     -- <leader>sg - Live grep
     vim.keymap.set("n", "<leader>sg", function()
-        Snacks.picker.grep()
+        require("snacks").picker.grep()
     end, { desc = "Fuzzy search string" })
 
     -- <leader>sG - Grep string under cursor
     vim.keymap.set("n", "<leader>sG", function()
-        Snacks.picker.grep_word()
+        require("snacks").picker.grep_word()
     end, { desc = "Search string under cursor" })
 
     -- <leader>sb - Search open buffers
     vim.keymap.set("n", "<leader>sb", function()
-        Snacks.picker.buffers({
+        require("snacks").picker.buffers({
             sort_lastused = true,
             current = false, -- ignore current buffer
         })
@@ -83,32 +83,32 @@ function M.setup()
 
     -- <leader>sd - Search diagnostics (buffer only)
     vim.keymap.set("n", "<leader>sd", function()
-        Snacks.picker.diagnostics_buffer()
+        require("snacks").picker.diagnostics_buffer()
     end, { desc = "Search diagnostics" })
 
     -- <leader>sc - Command history
     vim.keymap.set("n", "<leader>sc", function()
-        Snacks.picker.command_history()
+        require("snacks").picker.command_history()
     end, { desc = "Search command history" })
 
     -- <leader>sR - Resume last search
     vim.keymap.set("n", "<leader>sR", function()
-        Snacks.picker.resume()
+        require("snacks").picker.resume()
     end, { desc = "Resume last search" })
 
     -- <leader>sm - Marks
     vim.keymap.set("n", "<leader>sm", function()
-        Snacks.picker.marks()
+        require("snacks").picker.marks()
     end, { desc = "Search marks" })
 
     -- <leader>sr - Registers
     vim.keymap.set("n", "<leader>sr", function()
-        Snacks.picker.registers()
+        require("snacks").picker.registers()
     end, { desc = "Search registers" })
 
     -- <leader>sh - Help tags
     vim.keymap.set("n", "<leader>sh", function()
-        Snacks.picker.help()
+        require("snacks").picker.help()
     end, { desc = "Search help tags" })
 end
 
