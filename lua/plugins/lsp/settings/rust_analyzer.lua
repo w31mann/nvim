@@ -1,6 +1,6 @@
 return {
     settings = {
-        -- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
+        -- https://rust-analyzer.github.io/book/configuration.html
         ["rust-analyzer"] = {
             cargo = {
                 features = "all",
