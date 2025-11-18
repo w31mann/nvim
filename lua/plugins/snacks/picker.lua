@@ -22,22 +22,7 @@ M.config = {
     win = {
         input = {
             keys = {
-                -- Close on Ctrl-c and Esc (like Telescope)
                 ["<c-c>"] = { "close", mode = { "n", "i" } },
-                ["<Esc>"] = { "close", mode = { "n", "i" } },
-                -- Navigation matching Telescope
-                ["<c-j>"] = { "list_down", mode = { "i", "n" } },
-                ["<c-k>"] = { "list_up", mode = { "i", "n" } },
-                ["<c-q>"] = { "qflist", mode = { "i", "n" } },
-                ["<cr>"] = { "confirm", mode = { "n", "i" } },
-            },
-        },
-        list = {
-            keys = {
-                -- Navigation matching Telescope
-                ["<c-j>"] = "list_down",
-                ["<c-k>"] = "list_up",
-                ["<c-q>"] = "qflist",
             },
         },
     },
