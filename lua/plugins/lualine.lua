@@ -2,6 +2,7 @@
 
 return {
     "hoob3rt/lualine.nvim",
+    event = "VeryLazy",
     config = function()
         local palette = require("core.utils")
 

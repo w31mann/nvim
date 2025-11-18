@@ -20,9 +20,6 @@ return {
                 fidget = true,
                 mason = true,
                 blink_cmp = { enabled = true, style = "solid" },
-                telescope = {
-                    style = "nvchad_outlined",
-                },
                 snacks = {
                     enabled = true,
                     indent_scope_color = "lavender", -- Matches CursorLineNr color

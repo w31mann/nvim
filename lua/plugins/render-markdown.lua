@@ -4,6 +4,9 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = true,
     ft = { "markdown", "Avante" },
+    keys = {
+        { "<leader>tm", mode = "n", desc = "Toggle markdown concealing" },
+    },
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",

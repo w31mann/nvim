@@ -3,7 +3,7 @@
 return {
     "j-hui/fidget.nvim",
     branch = "main",
-    event = { "BufReadPre" },
+    event = "LspAttach",
     config = function()
         require("fidget").setup({
             progress = {
