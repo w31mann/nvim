@@ -6,7 +6,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         -- treesitter-context - https://github.com/nvim-treesitter/nvim-treesitter-context
-        "nvim-treesitter/nvim-treesitter-context",
+        -- "nvim-treesitter/nvim-treesitter-context",
     },
     config = function()
         ---@diagnostic disable: missing-fields
@@ -68,15 +68,15 @@ return {
             indent = {
                 enable = true,
             },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "gnn",
-                    node_incremental = "grn",
-                    scope_incremental = "grc",
-                    node_decremental = "grm",
-                },
-            },
+            -- incremental_selection = {
+            --     enable = true,
+            --     keymaps = {
+            --         init_selection = "gnn",
+            --         node_incremental = "grn",
+            --         scope_incremental = "grc",
+            --         node_decremental = "grm",
+            --     },
+            -- },
         })
     end,
 }
