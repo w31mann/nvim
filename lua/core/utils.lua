@@ -104,11 +104,11 @@ end
 function utils.color_palette()
     local palette
 
-    local catppuccin_ok, catppuccin = pcall(require, "catppucin.palettes")
+    local catppuccin_ok, catppuccin = pcall(require, "catppuccin.palettes")
     local tokyonight_ok, tokyonight = pcall(require, "tokyonight.colors")
 
     if catppuccin_ok then
-        palette = catppuccin().get_palette()
+        palette = catppuccin.get_palette()
     elseif tokyonight_ok then
         palette = tokyonight.setup()
     end

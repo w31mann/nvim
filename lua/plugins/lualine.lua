@@ -4,7 +4,7 @@ return {
     "hoob3rt/lualine.nvim",
     event = "VeryLazy",
     config = function()
-        local palette = require("core.utils")
+        local palette = require("core.utils").color_palette()
 
         local colors = {
             error = palette.red,
@@ -17,88 +17,11 @@ return {
             accent = palette.maroon,
         }
 
-        local function buf_policy_check()
-            local forbidden_buftypes = {
-                ["acwrite"] = true,
-                ["help"] = true,
-                ["lazy"] = true,
-                ["mason"] = true,
-                ["nofile"] = true,
-                ["prompt"] = true,
-                ["terminal"] = true,
-            }
-
-            return not forbidden_buftypes[vim.bo.buftype]
-                and not vim.bo.binary
-                and vim.api.nvim_buf_line_count(0) < 10000
-        end
-
-        local function whitespaces()
-            if not buf_policy_check() then
-                return ""
-            end
-
-            local pattern = [[\v((\s)|(\t))$]]
-
-            local line = vim.fn.search(pattern, "nw", 0, 500)
-
-            if line == 0 then
-                return ""
-            end
-
-            return string.format("%s %d", "⚇", line)
-        end
-
-        local function indentation_file()
-            if not buf_policy_check() then
-                return ""
-            end
-
-            local pattern
-
-            if vim.o.expandtab then
-                -- look for tabs
-                pattern = [[\v(^\t+)]]
-            else
-                -- look for spaces
-                pattern = [[\v(^ +\*@!)]]
-            end
-
-            local invalid_indentation = vim.fn.search(pattern, "nw")
-
-            if invalid_indentation > 0 then
-                return string.format("%s %d", "☵", invalid_indentation)
-            end
-
-            return ""
-        end
-
-        local function indentation_line()
-            if not buf_policy_check() then
-                return ""
-            end
-
-            local tabSpace = [[(^\t+ +)]]
-            local spaceTab = [[(^ +\t+)]]
-            local pattern = string.format([[\v%s|%s]], tabSpace, spaceTab)
-
-            local line = vim.fn.search(pattern, "nw", 0, 500)
-
-            if line > 0 then
-                return string.format("%s %d", "☱", line)
-            end
-
-            return ""
-        end
-
         local function snacks_terminal()
-            -- Check if current buffer is a snacks terminal
-            if vim.bo.filetype == "snacks_terminal" then
-                local buf = vim.api.nvim_get_current_buf()
-                local term_id = vim.b[buf].snacks_terminal and vim.b[buf].snacks_terminal.id
-                if term_id then
-                    return string.format("Terminal #%d", term_id)
-                end
+            local buf = vim.api.nvim_get_current_buf()
+            local term_id = vim.b[buf].snacks_terminal and vim.b[buf].snacks_terminal.id
+            if term_id then
+                return string.format("Terminal #%d", term_id)
             end
             return ""
         end
@@ -154,18 +77,6 @@ return {
                     {
                         "diagnostics",
                         sources = { "nvim_diagnostic" },
-                    },
-                    {
-                        whitespaces,
-                        color = { fg = colors.warn },
-                    },
-                    {
-                        indentation_file,
-                        color = { fg = colors.warn },
-                    },
-                    {
-                        indentation_line,
-                        color = { fg = colors.warn },
                     },
                     "filetype",
                 },
