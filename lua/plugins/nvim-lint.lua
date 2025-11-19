@@ -7,9 +7,17 @@ return {
     config = function()
         local nvim_lint = require("lint")
 
+        -- Register custom linters
+        nvim_lint.linters["trailing-whitespace"] = require("plugins.linters.trailing-whitespace")
+        nvim_lint.linters["indentation"] = require("plugins.linters.indentation")
+
+        -- Configure linters by filetype
         nvim_lint.linters_by_ft = {
+            -- External linters
             markdown = { "markdownlint-cli2" },
             gitcommit = { "gitlint" },
+            -- Custom linters for all filetypes (will be filtered by should_lint)
+            ["*"] = { "trailing-whitespace", "indentation" },
         }
 
         local markdownlint = nvim_lint.linters["markdownlint-cli2"]
@@ -30,10 +38,20 @@ return {
 
         local nvim_lint_augroup = vim.api.nvim_create_augroup("nvim_lint", { clear = true })
 
+        -- Autocmd for external linters (file-based)
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
             group = nvim_lint_augroup,
             callback = function()
                 nvim_lint.try_lint()
+            end,
+        })
+
+        -- More aggressive autocmd for custom buffer-based linters
+        vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
+            group = nvim_lint_augroup,
+            callback = function()
+                nvim_lint.try_lint("trailing-whitespace")
+                nvim_lint.try_lint("indentation")
             end,
         })
     end,
