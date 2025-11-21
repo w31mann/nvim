@@ -38,18 +38,11 @@ return {
 
         local nvim_lint_augroup = vim.api.nvim_create_augroup("nvim_lint", { clear = true })
 
-        -- Autocmd for external linters (file-based)
-        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        -- More aggressive autocmd for custom buffer-based linters
+        vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged", "InsertLeave" }, {
             group = nvim_lint_augroup,
             callback = function()
                 nvim_lint.try_lint()
-            end,
-        })
-
-        -- More aggressive autocmd for custom buffer-based linters
-        vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
-            group = nvim_lint_augroup,
-            callback = function()
                 nvim_lint.try_lint("trailing-whitespace")
                 nvim_lint.try_lint("indentation")
             end,
