@@ -18,14 +18,6 @@ M.config = {
         ignorecase = true,
         sort_empty = false,
     },
-    -- Window configuration
-    win = {
-        input = {
-            keys = {
-                ["<c-c>"] = { "close", mode = { "n", "i" } },
-            },
-        },
-    },
 }
 
 -- Setup keybindings
