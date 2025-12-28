@@ -116,4 +116,35 @@ function utils.color_palette()
     return palette
 end
 
+function utils.setup_clipboard()
+    local clipboard_tools = { "wl-copy", "pbcopy", "win32yank.exe" }
+    local has_clipboard_tool = false
+
+    local is_root = vim.uv.getuid() == 0
+
+    for _, tool in ipairs(clipboard_tools) do
+        if vim.fn.executable(tool) == 1 then
+            has_clipboard_tool = true
+            break
+        end
+    end
+
+    if not has_clipboard_tool or is_root then
+        -- OSC52 fallback
+        vim.g.clipboard = {
+            name = "OSC 52",
+            copy = {
+                ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+                ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+            },
+            paste = {
+                ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+                ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+            },
+        }
+    end
+
+    vim.opt.clipboard = "unnamedplus"
+end
+
 return utils

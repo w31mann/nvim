@@ -1,9 +1,7 @@
-vim.loader.enable()
-
+require("core.utils")
 require("core.options")
 require("core.keymaps")
 require("core.autocmds")
-require("core.utils")
 
 -- lazy plugin manager - https://github.com/folke/lazy.nvim
 
