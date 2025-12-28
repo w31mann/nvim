@@ -16,7 +16,7 @@ vim.g.netrw_preview = 1
 -- vim.g.netrw_winsize = 25
 
 vim.opt.breakindent = true
-vim.opt.clipboard:append("unnamedplus")
+vim.opt.clipboard = "unnamedplus"
 vim.opt.cmdheight = 1
 vim.opt.colorcolumn = tostring(textwidth + 1)
 vim.opt.cursorline = true
@@ -68,5 +68,19 @@ vim.opt.whichwrap:append("<,>,[,]")
 vim.opt.winborder = "single"
 vim.opt.wrap = false
 vim.opt.writebackup = false
+
+if vim.env.SSH_TTY then
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = {
+            ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+            ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+        },
+        paste = {
+            ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+            ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+        },
+    }
+end
 
 -- vim.lsp.set_log_level("debug")
