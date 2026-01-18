@@ -7,7 +7,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-        local function macchiato_lualine_overwrites(colors)
+        local function lualine_overwrites(colors)
             return {
                 normal = {
                     b = { bg = colors.surface0, fg = colors.text },
@@ -62,8 +62,8 @@ return {
         end
 
         require("catppuccin").setup({
-            flavour = "macchiato",
             term_colors = true,
+            flavour = "mocha",
             no_italic = true,
             no_underline = true,
             float = {
@@ -79,7 +79,7 @@ return {
                     indent_scope_color = "lavender",
                 },
                 lualine = {
-                    macchiato = macchiato_lualine_overwrites,
+                    all = lualine_overwrites,
                 },
             },
             custom_highlights = function(colors)
