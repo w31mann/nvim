@@ -3,9 +3,6 @@
 return {
     "nvim-treesitter/nvim-treesitter-context",
     enabled = true,
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-    },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         require("treesitter-context").setup()

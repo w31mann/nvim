@@ -99,6 +99,6 @@ return {
         vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = colors.red })
         vim.api.nvim_command("match ExtraWhitespace /\\s\\+$/")
 
-        vim.cmd.colorscheme("catppuccin")
+        vim.cmd.colorscheme("catppuccin-nvim")
     end,
 }

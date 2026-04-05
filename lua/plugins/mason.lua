@@ -4,54 +4,36 @@ return {
     "williamboman/mason.nvim",
     branch = "main",
     dependencies = {
-        -- mason-lspconfig - https://github.com/williamboman/mason-lspconfig.nvim
-        "williamboman/mason-lspconfig.nvim",
         -- mason-tool-installer - https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
         "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     config = function()
         require("mason").setup()
 
-        local mason_lspconfig = require("mason-lspconfig")
-
-        -- ensure LSP servers to be installed
-        mason_lspconfig.setup({
-            automatic_enable = false,
-            automatic_installation = false,
+        require("mason-tool-installer").setup({
             ensure_installed = {
-                -- example on how to select specific version:
-                -- "rust_analyzer@2024-04-29",
-                "bashls",
+                -- lsp
+                "bash-language-server",
                 "clangd",
-                -- "cmake",
-                "neocmake",
-                -- "dockerls",
-                "jsonls",
-                "lua_ls",
+                "neocmakelsp",
+                "json-lsp",
+                "lua-language-server",
                 "marksman",
-                -- "pyright",
-                "rust_analyzer",
+                "rust-analyzer",
                 "taplo",
-                "yamlls",
-            },
-        })
-
-        local mason_tool_installer = require("mason-tool-installer")
-
-        -- ensure formatters and linters to be installed
-        mason_tool_installer.setup({
-            ensure_installed = {
+                "yaml-language-server",
+                -- formatters
                 "beautysh",
-                -- "black",
                 "clang-format",
-                "codelldb",
-                "gitlint",
-                -- "isort",
-                "markdownlint-cli2",
                 "prettier",
-                "shellcheck",
                 "shellharden",
                 "stylua",
+                -- linters
+                "gitlint",
+                "markdownlint-cli2",
+                "shellcheck",
+                -- dap
+                "codelldb",
             },
             auto_update = true,
         })

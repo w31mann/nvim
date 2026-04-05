@@ -1,12 +1,5 @@
 local m = {}
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local blink_cmp_ok, blink_cmp = pcall(require, "blink.cmp")
-if blink_cmp_ok then
-    m.capabilities = blink_cmp.get_lsp_capabilities(capabilities)
-end
-
 m.init = function()
     local icons = require("core.icons")
 
@@ -46,54 +39,21 @@ m.init = function()
 end
 
 m.bindings = function(bufnr)
-    local telescope_builtin_ok, telescope_builtin = pcall(require, "telescope.builtin")
-    if not telescope_builtin_ok then
-        vim.keymap.set("n", "grr", vim.lsp.buf.references, {
-            buffer = bufnr,
-            desc = "Go to references",
-        })
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
-            buffer = bufnr,
-            desc = "Go to definition",
-        })
-        vim.keymap.set("n", "gri", vim.lsp.buf.implementation, {
-            buffer = bufnr,
-            desc = "Go to implementation",
-        })
-    else
-        vim.keymap.set("n", "grr", telescope_builtin.lsp_references, {
-            buffer = bufnr,
-            desc = "Search references",
-        })
-        vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, {
-            buffer = bufnr,
-            desc = "Go to definition",
-        })
-        vim.keymap.set("n", "gri", telescope_builtin.lsp_implementations, {
-            buffer = bufnr,
-            desc = "Go to implementation",
-        })
-    end
-
+    vim.keymap.set("n", "grr", function()
+        require("snacks").picker.lsp_references()
+    end, { buffer = bufnr, desc = "Search references" })
+    vim.keymap.set("n", "gd", function()
+        require("snacks").picker.lsp_definitions()
+    end, { buffer = bufnr, desc = "Go to definition" })
+    vim.keymap.set("n", "gri", function()
+        require("snacks").picker.lsp_implementations()
+    end, { buffer = bufnr, desc = "Go to implementation" })
+    vim.keymap.set("n", "grt", function()
+        require("snacks").picker.lsp_type_definitions()
+    end, { buffer = bufnr, desc = "Go to type definition" })
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {
         buffer = bufnr,
         desc = "Go to declaration",
-    })
-    vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, {
-        buffer = bufnr,
-        desc = "Go to definition",
-    })
-    vim.keymap.set({ "n", "v" }, "gra", vim.lsp.buf.code_action, {
-        buffer = bufnr,
-        desc = "Code actions",
-    })
-    vim.keymap.set("n", "grn", vim.lsp.buf.rename, {
-        buffer = bufnr,
-        desc = "Rename",
-    })
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, {
-        buffer = bufnr,
-        desc = "Hover information",
     })
     vim.keymap.set("n", "S", vim.lsp.buf.signature_help, {
         buffer = bufnr,

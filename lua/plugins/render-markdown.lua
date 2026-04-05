@@ -8,7 +8,6 @@ return {
         { "<leader>tm", mode = "n", desc = "Toggle markdown concealing" },
     },
     dependencies = {
-        "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
     },
     config = function()

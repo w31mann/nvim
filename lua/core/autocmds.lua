@@ -24,6 +24,16 @@ vim.api.nvim_create_autocmd("VimResized", {
     group = core_augroup,
     desc = "Equalize splits",
 })
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(ev)
+        local lang = vim.treesitter.language.get_lang(ev.match)
+        if vim.treesitter.language.add(lang or ev.match) then
+            vim.treesitter.start(ev.buf)
+        end
+    end,
+    group = core_augroup,
+    desc = "Enable treesitter highlighting for filetypes with available parsers",
+})
 
 local cursorword_augroup = vim.api.nvim_create_augroup("cursorword_augroup", {
     clear = true,
