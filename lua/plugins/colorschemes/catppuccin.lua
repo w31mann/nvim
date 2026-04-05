@@ -71,7 +71,6 @@ return {
                 solid = true,
             },
             integrations = {
-                fidget = true,
                 mason = true,
                 blink_cmp = { enabled = true, style = "solid" },
                 snacks = {

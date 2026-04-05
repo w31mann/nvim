@@ -50,7 +50,7 @@ function utils.toggleLineNumbers()
 end
 
 function utils.toggleDiagnostics(global)
-    local vars, bufnr, cmd
+    local vars, bufnr
 
     if global then
         vars = vim.g
@@ -61,15 +61,15 @@ function utils.toggleDiagnostics(global)
     end
 
     vars.diagnostics_disabled = not vars.diagnostics_disabled
-    if vars.diagnostics_disabled then
-        cmd = "disable"
-        vim.notify("Diagnostics disabled", vim.log.levels.INFO)
-    else
-        cmd = "enable"
-        vim.notify("Diagnostics enabled", vim.log.levels.INFO)
-    end
+    local enabled = not vars.diagnostics_disabled
 
-    vim.diagnostic[cmd](bufnr)
+    vim.diagnostic.enable(enabled, { bufnr = bufnr })
+
+    if enabled then
+        vim.notify("Diagnostics enabled", vim.log.levels.INFO)
+    else
+        vim.notify("Diagnostics disabled", vim.log.levels.INFO)
+    end
 end
 
 function utils.toggleInlayHints()
@@ -80,6 +80,17 @@ function utils.toggleInlayHints()
     else
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         vim.notify("Inlay hints enabled", vim.log.levels.INFO)
+    end
+end
+
+function utils.toggleCodeLens()
+    local bufnr = vim.api.nvim_get_current_buf()
+    if vim.lsp.codelens.is_enabled({ bufnr = bufnr }) then
+        vim.lsp.codelens.enable(false, { bufnr = bufnr })
+        vim.notify("Code lens disabled", vim.log.levels.INFO)
+    else
+        vim.lsp.codelens.enable(true, { bufnr = bufnr })
+        vim.notify("Code lens enabled", vim.log.levels.INFO)
     end
 end
 

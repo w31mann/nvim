@@ -65,6 +65,10 @@ return {
                         "diagnostics",
                         sources = { "nvim_diagnostic" },
                     },
+                    {
+                        "lsp_status",
+                        icon = "",
+                    },
                     "filetype",
                 },
                 lualine_y = {

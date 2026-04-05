@@ -95,6 +95,11 @@ m.bindings = function(bufnr)
         desc = "Toggle inlay hints",
     })
 
+    vim.keymap.set("n", "<leader>iL", require("core.utils").toggleCodeLens, {
+        buffer = bufnr,
+        desc = "Toggle code lens",
+    })
+
     vim.keymap.set("n", "<leader>tv", function()
         local new_config = not vim.diagnostic.config().virtual_lines
         vim.diagnostic.config({ virtual_lines = new_config })

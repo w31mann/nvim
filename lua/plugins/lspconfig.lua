@@ -23,6 +23,12 @@ return {
                 if client ~= nil and client:supports_method("textDocument/inlayHint", ev.buf) then
                     vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
                 end
+
+                -- TODO: enable once on Neovim 0.12.1+
+                -- codelens decoration provider causes E565 in 0.12.0 (fixed in #38641)
+                -- if client ~= nil and client:supports_method("textDocument/codeLens", ev.buf) then
+                --     vim.lsp.codelens.enable(true, { bufnr = ev.buf })
+                -- end
             end,
             desc = "Setup a LSP client on attach",
         })
