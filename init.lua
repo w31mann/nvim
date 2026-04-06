@@ -39,6 +39,7 @@ require("plugins.catppuccin")
 require("core.options")
 require("core.keymaps")
 require("core.autocmds")
+require("core.usercmds")
 require("core.statusline")
 require("core.terminal")
 
