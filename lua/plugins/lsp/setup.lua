@@ -3,14 +3,11 @@ local m = {}
 m.init = function()
     local icons = require("core.icons")
 
-    local diagnostics_config = {
+    vim.diagnostic.config({
         virtual_text = {
-            prefix = "",
+            prefix = "",
             current_line = true,
         },
-        -- virtual_lines = {
-        --     current_line = true,
-        -- },
         signs = {
             text = {
                 [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
@@ -33,24 +30,28 @@ m.init = function()
                 return t.message
             end,
         },
-    }
-
-    vim.diagnostic.config(diagnostics_config)
+    })
 end
 
 m.bindings = function(bufnr)
-    vim.keymap.set("n", "grr", function()
-        require("snacks").picker.lsp_references()
-    end, { buffer = bufnr, desc = "Search references" })
-    vim.keymap.set("n", "gd", function()
-        require("snacks").picker.lsp_definitions()
-    end, { buffer = bufnr, desc = "Go to definition" })
-    vim.keymap.set("n", "gri", function()
-        require("snacks").picker.lsp_implementations()
-    end, { buffer = bufnr, desc = "Go to implementation" })
-    vim.keymap.set("n", "grt", function()
-        require("snacks").picker.lsp_type_definitions()
-    end, { buffer = bufnr, desc = "Go to type definition" })
+    local fzf = require("fzf-lua")
+
+    vim.keymap.set("n", "grr", fzf.lsp_references, {
+        buffer = bufnr,
+        desc = "Search references",
+    })
+    vim.keymap.set("n", "gd", fzf.lsp_definitions, {
+        buffer = bufnr,
+        desc = "Go to definition",
+    })
+    vim.keymap.set("n", "gri", fzf.lsp_implementations, {
+        buffer = bufnr,
+        desc = "Go to implementation",
+    })
+    vim.keymap.set("n", "grt", fzf.lsp_typedefs, {
+        buffer = bufnr,
+        desc = "Go to type definition",
+    })
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {
         buffer = bufnr,
         desc = "Go to declaration",
@@ -66,23 +67,21 @@ m.bindings = function(bufnr)
         desc = "Toggle diagnostics (globally)",
     })
     vim.keymap.set("n", "<space>wl", function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        vim.print(vim.lsp.buf.list_workspace_folders())
     end, {
         buffer = bufnr,
         desc = "List workspace folders",
     })
 
-    -- mac
-    -- <option> - d
+    -- Mac: <option>-d / <option>-D
     vim.keymap.set("n", "∂", function()
         vim.diagnostic.jump({ count = 1, float = true })
     end, { buffer = bufnr, desc = "Go to next diagnostic" })
-    -- <option> - D
     vim.keymap.set("n", "™", function()
         vim.diagnostic.jump({ count = -1, float = true })
     end, { buffer = bufnr, desc = "Go to previous diagnostic" })
 
-    -- linux
+    -- Linux
     vim.keymap.set("n", "<m-d>", function()
         vim.diagnostic.jump({ count = 1, float = true })
     end, { buffer = bufnr, desc = "Go to next diagnostic" })

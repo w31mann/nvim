@@ -2,18 +2,16 @@ local indent = 4
 local textwidth = 100
 
 local undodir = vim.fn.stdpath("state") .. "/undodir"
-if vim.fn.isdirectory(undodir) == 0 then
+if not vim.uv.fs_stat(undodir) then
     vim.fn.mkdir(undodir, "p")
 end
 
 vim.g.netrw_altv = 1
 vim.g.netrw_alto = 0
 vim.g.netrw_banner = 0
--- vim.g.netrw_browse_split = 4
 vim.g.netrw_liststyle = 3
 vim.g.netrw_localcopydircmd = "cp -r"
 vim.g.netrw_preview = 1
--- vim.g.netrw_winsize = 25
 
 vim.opt.breakindent = true
 vim.opt.cmdheight = 1
@@ -68,6 +66,6 @@ vim.opt.winborder = "single"
 vim.opt.wrap = false
 vim.opt.writebackup = false
 
--- vim.lsp.set_log_level("debug")
-
 require("core.utils").setup_clipboard()
+require("vim._core.ui2").enable({})
+vim.cmd.colorscheme("catppuccin")

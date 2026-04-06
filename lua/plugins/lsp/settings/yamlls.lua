@@ -1,6 +1,20 @@
-local repo_root = require("core.utils").project_root()
-
 return {
+    on_init = function(client)
+        local root = client.root_dir
+        if not root then
+            return
+        end
+
+        client.settings = vim.tbl_deep_extend("force", client.settings, {
+            yaml = {
+                schemas = {
+                    [root .. "/configs/schemas/profiles.json"] = root .. "/configs/profiles.yaml",
+                },
+            },
+        })
+
+        client:notify("workspace/didChangeConfiguration", { settings = client.settings })
+    end,
     settings = {
         yaml = {
             format = {
@@ -12,9 +26,6 @@ return {
             schemaStore = {
                 enable = false,
                 url = "",
-            },
-            schemas = {
-                [repo_root .. "/configs/schemas/profiles.json"] = repo_root .. "/configs/profiles.yaml",
             },
         },
     },

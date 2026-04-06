@@ -1,14 +1,11 @@
 local utils = {}
 
 function utils.toggleIndentation()
-    local title = "Toggle Indentation"
-
+    vim.o.expandtab = not vim.o.expandtab
     if vim.o.expandtab then
-        vim.opt.expandtab = false
-        vim.notify("Using TABS for indentation", vim.log.levels.INFO, { title = title })
+        vim.notify("Using SPACES for indentation", vim.log.levels.INFO)
     else
-        vim.opt.expandtab = true
-        vim.notify("Using SPACES for indentation", vim.log.levels.INFO, { title = title })
+        vim.notify("Using TABS for indentation", vim.log.levels.INFO)
     end
 end
 
@@ -24,8 +21,8 @@ function utils.toggleQuickfixWindow()
 end
 
 function utils.toggleSpellChecking()
-    vim.opt_local.spell = not (vim.opt_local.spell:get())
-    if vim.opt_local.spell:get() then
+    vim.wo.spell = not vim.wo.spell
+    if vim.wo.spell then
         vim.notify("Spelling enabled", vim.log.levels.INFO)
     else
         vim.notify("Spelling disabled", vim.log.levels.INFO)
@@ -34,97 +31,45 @@ end
 
 function utils.toggleLineNumbers()
     if vim.o.number and vim.o.relativenumber then
-        vim.opt.relativenumber = false
+        vim.o.relativenumber = false
     elseif vim.o.number and not vim.o.relativenumber then
-        vim.opt.number = false
+        vim.o.number = false
     else
-        vim.opt.number = true
-        vim.opt.relativenumber = true
+        vim.o.number = true
+        vim.o.relativenumber = true
     end
 
     vim.notify(
         string.format("Line Numbers: %s\nRelative Numbers: %s", vim.o.number, vim.o.relativenumber),
-        vim.log.levels.INFO,
-        { title = "Toggle Line Numbers" }
+        vim.log.levels.INFO
     )
 end
 
 function utils.toggleDiagnostics(global)
-    local vars, bufnr
+    local bufnr = global and nil or 0
+    local enabled = vim.diagnostic.is_enabled({ bufnr = bufnr })
 
-    if global then
-        vars = vim.g
-        bufnr = nil
-    else
-        vars = vim.b
-        bufnr = 0
-    end
-
-    vars.diagnostics_disabled = not vars.diagnostics_disabled
-    local enabled = not vars.diagnostics_disabled
-
-    vim.diagnostic.enable(enabled, { bufnr = bufnr })
+    vim.diagnostic.enable(not enabled, { bufnr = bufnr })
 
     if enabled then
-        vim.notify("Diagnostics enabled", vim.log.levels.INFO)
-    else
         vim.notify("Diagnostics disabled", vim.log.levels.INFO)
+    else
+        vim.notify("Diagnostics enabled", vim.log.levels.INFO)
     end
 end
 
 function utils.toggleInlayHints()
     local bufnr = vim.api.nvim_get_current_buf()
-    if vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }) then
-        vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-        vim.notify("Inlay hints disabled", vim.log.levels.INFO)
-    else
-        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-        vim.notify("Inlay hints enabled", vim.log.levels.INFO)
-    end
+    local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+    vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+    vim.notify(enabled and "Inlay hints disabled" or "Inlay hints enabled", vim.log.levels.INFO)
 end
 
 function utils.toggleCodeLens()
     local bufnr = vim.api.nvim_get_current_buf()
-    if vim.lsp.codelens.is_enabled({ bufnr = bufnr }) then
-        vim.lsp.codelens.enable(false, { bufnr = bufnr })
-        vim.notify("Code lens disabled", vim.log.levels.INFO)
-    else
-        vim.lsp.codelens.enable(true, { bufnr = bufnr })
-        vim.notify("Code lens enabled", vim.log.levels.INFO)
-    end
-end
-
-function utils.project_root(root_patterns)
-    root_patterns = root_patterns or { ".git" }
-
-    local current_buf_path = vim.api.nvim_buf_get_name(0)
-    if current_buf_path == "" then
-        return nil
-    end
-
-    local current_dir = vim.fs.dirname(current_buf_path)
-    local root_file = vim.fs.find(root_patterns, { upward = true, path = current_dir })[1]
-
-    if root_file then
-        return vim.fs.dirname(root_file)
-    else
-        return nil
-    end
-end
-
-function utils.color_palette()
-    local palette
-
-    local catppuccin_ok, catppuccin = pcall(require, "catppuccin.palettes")
-    local tokyonight_ok, tokyonight = pcall(require, "tokyonight.colors")
-
-    if catppuccin_ok then
-        palette = catppuccin.get_palette()
-    elseif tokyonight_ok then
-        palette = tokyonight.setup()
-    end
-
-    return palette
+    local enabled = vim.lsp.codelens.is_enabled({ bufnr = bufnr })
+    vim.lsp.codelens.enable(not enabled, { bufnr = bufnr })
+    vim.notify(enabled and "Code lens disabled" or "Code lens enabled", vim.log.levels.INFO)
 end
 
 function utils.setup_clipboard()
@@ -141,7 +86,6 @@ function utils.setup_clipboard()
     end
 
     if not has_clipboard_tool or is_root then
-        -- OSC52 fallback
         vim.g.clipboard = {
             name = "OSC 52",
             copy = {
@@ -155,7 +99,7 @@ function utils.setup_clipboard()
         }
     end
 
-    vim.opt.clipboard = "unnamedplus"
+    vim.o.clipboard = "unnamedplus"
 end
 
 return utils

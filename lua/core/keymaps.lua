@@ -1,4 +1,3 @@
--- leader key is space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -20,7 +19,7 @@ vim.keymap.set("", "k", "gk", {
 vim.keymap.set("n", "<leader>gc", "/\\v^[<\\|=\\|>]{7}( .*|$)<cr>", {
     desc = "Find git merge conflict markers",
 })
-vim.keymap.set("n", "<leader>bd", ":b#<bar>bd#<cr>", {
+vim.keymap.set("n", "<leader>bd", "<cmd>b#<bar>bd#<cr>", {
     desc = "Close buffer without closing the split",
 })
 vim.keymap.set("n", "Y", "y$", {
@@ -71,7 +70,7 @@ vim.keymap.set("v", ".", "<cmd>normal .<cr>", {
     desc = "Repeat operator with a visual selection",
 })
 vim.keymap.set("c", "w!!", "!sudo tee % >/dev/null", {
-    desc = "Really wright a file in case of forgotten sudo",
+    desc = "Really write a file in case of forgotten sudo",
 })
 vim.keymap.set("n", "<c-j>", "<cmd>m .+1<cr>==", {
     desc = "Move line down",
@@ -119,18 +118,18 @@ vim.keymap.set("n", "sf", "z=", {
     desc = "Get suggestions to fix spelling",
 })
 vim.keymap.set("n", "sn", "]s", {
-    desc = "Go to next missspelling",
+    desc = "Go to next misspelling",
 })
 vim.keymap.set("n", "sp", "[s", {
-    desc = "Go to previous missspelling",
+    desc = "Go to previous misspelling",
 })
 vim.keymap.set("n", "<leader>ts", require("core.utils").toggleSpellChecking, {
     desc = "Toggle spell checking",
 })
-vim.keymap.set("n", "<leader>th", ":set hlsearch!<cr>", {
+vim.keymap.set("n", "<leader>th", "<cmd>set hlsearch!<cr>", {
     desc = "Toggle search highlighting",
 })
-vim.keymap.set("n", "<leader>tl", ":set list!<cr>", {
+vim.keymap.set("n", "<leader>tl", "<cmd>set list!<cr>", {
     desc = "Toggle list characters",
 })
 vim.keymap.set("n", "<leader>tn", require("core.utils").toggleLineNumbers, {
@@ -142,12 +141,6 @@ vim.keymap.set("n", "<leader>ti", require("core.utils").toggleIndentation, {
 vim.keymap.set("v", "<leader>rn", '"hy:%s/<c-r>h//g<left><left>', {
     desc = "Replace visually highlighted term",
 })
--- vim.keymap.set("n", "<leader><leader>T", "<cmd>Lexplore %:p:h<cr>", {
---     desc = "Open netrw in the directory of the current file",
--- })
--- vim.keymap.set("n", "<leader><leader>t", "<cmd>20Lexplore<cr>", {
---     desc = "Open netrw in the current working directory",
--- })
 vim.keymap.set("n", "<leader>cq", require("core.utils").toggleQuickfixWindow, {
     desc = "Open/close quickfix windows",
 })
@@ -172,5 +165,5 @@ vim.keymap.set("x", "Q", "<cmd>norm @q<cr>", {
 vim.keymap.set("n", "<leader>pa", function()
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)
-    print("file:", path)
+    vim.notify("file: " .. path, vim.log.levels.INFO)
 end, { desc = "Copy file system path of current file" })

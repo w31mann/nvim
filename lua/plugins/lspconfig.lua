@@ -1,60 +1,40 @@
--- lspconfig - https://github.com/neovim/nvim-lspconfig
+local lsp_setup = require("plugins.lsp.setup")
 
-return {
-    "neovim/nvim-lspconfig",
-    config = function()
-        local lsp_setup = require("plugins.lsp.setup")
+lsp_setup.init()
 
-        lsp_setup.init()
+local lsp_attach_augroup = vim.api.nvim_create_augroup("lsp_attach_augroup", {
+    clear = true,
+})
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = lsp_attach_augroup,
+    callback = function(ev)
+        lsp_setup.bindings(ev.buf)
 
-        local lsp_attach_augroup = vim.api.nvim_create_augroup("lsp_attach_augroup", {
-            clear = true,
-        })
-        vim.api.nvim_create_autocmd("LspAttach", {
-            group = lsp_attach_augroup,
-            callback = function(ev)
-                lsp_setup.bindings(ev.buf)
-
-                if vim.b[ev.buf].diagnostics_disabled or vim.g.diagnostics_disabled then
-                    vim.diagnostic.enable(false, { bufnr = ev.buf })
-                end
-
-                local client = vim.lsp.get_client_by_id(ev.data.client_id)
-                if client ~= nil and client:supports_method("textDocument/inlayHint", ev.buf) then
-                    vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
-                end
-
-                -- TODO: enable once on Neovim 0.12.1+
-                -- codelens decoration provider causes E565 in 0.12.0 (fixed in #38641)
-                -- if client ~= nil and client:supports_method("textDocument/codeLens", ev.buf) then
-                --     vim.lsp.codelens.enable(true, { bufnr = ev.buf })
-                -- end
-            end,
-            desc = "Setup a LSP client on attach",
-        })
-
-        local servers = {
-            "bashls",
-            "clangd",
-            "neocmake",
-            -- "dockerls",
-            "jsonls",
-            "marksman",
-            "lua_ls",
-            -- "pyright",
-            "rust_analyzer",
-            "taplo",
-            "yamlls",
-        }
-
-        for _, server in pairs(servers) do
-            vim.lsp.enable(server)
-
-            local lsp_settings_found, lsp_settings =
-                pcall(require, "plugins.lsp.settings." .. server)
-            if lsp_settings_found then
-                vim.lsp.config(server, lsp_settings)
-            end
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client ~= nil and client:supports_method("textDocument/inlayHint", ev.buf) then
+            vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
         end
     end,
+    desc = "Setup a LSP client on attach",
+})
+
+local servers = {
+    "bashls",
+    "clangd",
+    "neocmake",
+    "jsonls",
+    "marksman",
+    "lua_ls",
+    "rust_analyzer",
+    "taplo",
+    "yamlls",
 }
+
+for _, server in pairs(servers) do
+    local lsp_settings_found, lsp_settings = pcall(require, "plugins.lsp.settings." .. server)
+    if lsp_settings_found then
+        vim.lsp.config(server, lsp_settings)
+    end
+
+    vim.lsp.enable(server)
+end

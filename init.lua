@@ -1,45 +1,53 @@
-require("core.utils")
+local config_root = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":h")
+vim.opt.rtp:prepend(config_root)
+
+-- Build hooks must be registered before vim.pack.add()
+vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(ev)
+        local name, kind = ev.data.spec.name, ev.data.kind
+        if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
+            if not ev.data.active then
+                vim.cmd.packadd("nvim-treesitter")
+            end
+            vim.cmd("TSUpdate")
+        end
+    end,
+})
+
+local gh = function(x)
+    return "https://github.com/" .. x
+end
+
+vim.pack.add({
+    { src = gh("catppuccin/nvim"), name = "catppuccin" },
+    gh("neovim/nvim-lspconfig"),
+    gh("williamboman/mason.nvim"),
+    gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
+    gh("lewis6991/gitsigns.nvim"),
+    gh("stevearc/conform.nvim"),
+    gh("mfussenegger/nvim-lint"),
+    { src = gh("saghen/blink.cmp"), version = vim.version.range("1") },
+    gh("rafamadriz/friendly-snippets"),
+    gh("nvim-treesitter/nvim-treesitter"),
+    gh("nvim-treesitter/nvim-treesitter-context"),
+    gh("ibhagwan/fzf-lua"),
+})
+
+-- Colorscheme must be configured before loading (setup before colorscheme)
+require("plugins.catppuccin")
+
 require("core.options")
 require("core.keymaps")
 require("core.autocmds")
+require("core.statusline")
+require("core.terminal")
 
--- lazy plugin manager - https://github.com/folke/lazy.nvim
-
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
-local lazy_ok, lazy = pcall(require, "lazy")
-if lazy_ok then
-    lazy.setup({
-        { import = "plugins" },
-        { import = "plugins.colorschemes" },
-    }, {
-        -- check for plugin updates and notify
-        checker = {
-            enabled = false,
-            notify = true,
-        },
-        -- check for config updates to update the UI but do not notify
-        change_detection = {
-            notify = false,
-        },
-        ui = {
-            border = "single",
-        },
-        rocks = {
-            enabled = false,
-        },
-    })
-else
-    vim.notify("Lazy failed to setup plugins", vim.log.levels.ERROR)
-end
+require("plugins.treesitter")
+require("plugins.treesitter-context")
+require("plugins.gitsigns")
+require("plugins.mason")
+require("plugins.lspconfig")
+require("plugins.conform")
+require("plugins.nvim-lint")
+require("plugins.blink-cmp")
+require("plugins.fzf-lua")
