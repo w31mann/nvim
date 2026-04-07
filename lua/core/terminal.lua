@@ -91,6 +91,16 @@ function M.toggle_all()
     end
 end
 
+function M.hide_current()
+    local buf = vim.api.nvim_get_current_buf()
+    for _, term in pairs(terminals) do
+        if term.buf == buf then
+            hide_terminal(term)
+            return
+        end
+    end
+end
+
 function M.smart_toggle()
     local count = vim.v.count
     if count > 0 then
@@ -100,6 +110,8 @@ function M.smart_toggle()
         else
             open_terminal_window(term)
         end
+    elseif vim.bo.buftype == "terminal" then
+        M.hide_current()
     else
         M.toggle_all()
     end
@@ -108,11 +120,11 @@ end
 -- Keybindings
 -- Mac
 vim.keymap.set("n", "†", M.smart_toggle, { desc = "Toggle terminals (count-aware)" })
-vim.keymap.set("t", "†", M.toggle_all, { desc = "Toggle all terminals" })
+vim.keymap.set("t", "†", M.hide_current, { desc = "Hide current terminal" })
 vim.keymap.set("t", "µ", "<c-\\><c-n>", { desc = "Terminal normal mode" })
 -- Linux
 vim.keymap.set("n", "<m-t>", M.smart_toggle, { desc = "Toggle terminals (count-aware)" })
-vim.keymap.set("t", "<m-t>", M.toggle_all, { desc = "Toggle all terminals" })
+vim.keymap.set("t", "<m-t>", M.hide_current, { desc = "Hide current terminal" })
 vim.keymap.set("t", "<m-m>", "<c-\\><c-n>", { desc = "Terminal normal mode" })
 
 -- Clean up terminals on quit so nvim can exit

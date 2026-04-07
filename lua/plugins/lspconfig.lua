@@ -10,11 +10,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         lsp_setup.bindings(ev.buf)
 
+        -- enable inlay hints
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if client ~= nil and client:supports_method("textDocument/inlayHint", ev.buf) then
             vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
         end
 
+        -- enable code lens
         if client ~= nil and client:supports_method("textDocument/codeLens", ev.buf) then
             vim.lsp.codelens.enable(true, { bufnr = ev.buf })
         end
