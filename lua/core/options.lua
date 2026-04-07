@@ -67,4 +67,3 @@ vim.opt.writebackup = false
 
 require("core.utils").setup_clipboard()
 require("vim._core.ui2").enable({})
-vim.cmd.colorscheme("catppuccin")

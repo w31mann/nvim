@@ -91,7 +91,3 @@ vim.api.nvim_create_autocmd("FileType", {
     group = colorcolumn_augroup,
     desc = "Disable colorcolumn for specific filetypes",
 })
-
--- Trailing whitespace highlight
-vim.api.nvim_set_hl(0, "ExtraWhitespace", { link = "DiagnosticError" })
-vim.cmd("match ExtraWhitespace /\\s\\+$/")

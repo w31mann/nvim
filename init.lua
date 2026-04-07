@@ -1,6 +1,3 @@
-local config_root = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":h")
-vim.opt.rtp:prepend(config_root)
-
 require("core.pack")
 
 require("plugins.catppuccin")

@@ -37,3 +37,9 @@ require("catppuccin").setup({
         }
     end,
 })
+
+-- Trailing whitespace highlight
+vim.api.nvim_set_hl(0, "ExtraWhitespace", { link = "DiagnosticError" })
+vim.cmd("match ExtraWhitespace /\\s\\+$/")
+
+vim.cmd.colorscheme("catppuccin")
