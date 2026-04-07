@@ -20,7 +20,7 @@ local function open_terminal_window(term)
     end
 
     vim.cmd("botright split")
-    vim.api.nvim_win_set_height(0, 15)
+    vim.api.nvim_win_set_height(0, 20)
     local win = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_buf(win, term.buf)
     term.win = win
@@ -30,6 +30,7 @@ local function open_terminal_window(term)
         vim.cmd("terminal")
         term.buf = vim.api.nvim_get_current_buf()
         terminals[term.id].buf = term.buf
+        vim.b[term.buf].terminal_id = term.id
     end
 
     vim.cmd("startinsert")

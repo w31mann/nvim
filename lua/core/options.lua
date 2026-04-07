@@ -39,7 +39,6 @@ vim.opt.path:append("**")
 vim.opt.pumheight = 10
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
-vim.opt.selection = "exclusive"
 vim.opt.sidescrolloff = 4
 vim.opt.signcolumn = "yes"
 vim.opt.shiftround = true

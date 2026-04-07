@@ -37,9 +37,17 @@ local function git_branch()
     return vim.b.gitsigns_head or ""
 end
 
+local function filename()
+    local id = vim.b.terminal_id
+    if id then
+        return "terminal " .. id
+    end
+    return "%f"
+end
+
 function Statusline()
     local parts = {
-        " %f",
+        " " .. filename(),
         "%m%r",
         "  ",
         git_branch(),

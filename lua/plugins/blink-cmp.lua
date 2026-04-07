@@ -3,9 +3,6 @@ require("blink.cmp").setup({
         preset = "default",
         ["<c-z>"] = { "accept" },
     },
-    sources = {
-        default = { "lsp", "buffer", "snippets", "path", "cmdline" },
-    },
     cmdline = {
         keymap = {
             preset = "cmdline",
@@ -28,7 +25,7 @@ require("blink.cmp").setup({
             auto_show_delay_ms = 500,
         },
         ghost_text = {
-            enabled = false,
+            enabled = true,
         },
     },
     signature = {
