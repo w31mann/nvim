@@ -14,14 +14,12 @@ vim.g.netrw_localcopydircmd = "cp -r"
 vim.g.netrw_preview = 1
 
 vim.opt.breakindent = true
-vim.opt.cmdheight = 1
 vim.opt.colorcolumn = tostring(textwidth + 1)
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.fileencoding = "utf-8"
 vim.opt.foldenable = false
 vim.opt.formatoptions = "cnqj2"
-vim.opt.history = 500
 vim.opt.ignorecase = true
 vim.opt.iskeyword:append("-")
 vim.opt.inccommand = "split"

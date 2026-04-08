@@ -16,7 +16,6 @@ m.init = function()
                 [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
             },
         },
-        update_in_insert = false,
         severity_sort = true,
         float = {
             source = "if_many",

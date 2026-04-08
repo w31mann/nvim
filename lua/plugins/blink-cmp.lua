@@ -1,11 +1,9 @@
 require("blink.cmp").setup({
     keymap = {
-        preset = "default",
         ["<c-z>"] = { "accept" },
     },
     cmdline = {
         keymap = {
-            preset = "cmdline",
             ["<c-z>"] = { "accept" },
         },
         completion = {
@@ -22,7 +20,6 @@ require("blink.cmp").setup({
         },
         documentation = {
             auto_show = true,
-            auto_show_delay_ms = 500,
         },
         ghost_text = {
             enabled = true,
@@ -33,8 +30,5 @@ require("blink.cmp").setup({
         window = {
             scrollbar = true,
         },
-    },
-    fuzzy = {
-        implementation = "prefer_rust_with_warning",
     },
 })
