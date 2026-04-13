@@ -24,4 +24,5 @@ vim.pack.add({
     "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/nvim-treesitter/nvim-treesitter-context",
     "https://github.com/ibhagwan/fzf-lua",
+    "https://github.com/hedyhli/outline.nvim",
 })
