@@ -1,5 +1,26 @@
 local icons = require("core.icons")
 
+local mode_map = {
+    ["n"]  = "StatusModeNormal",
+    ["no"] = "StatusModeNormal",
+    ["i"]  = "StatusModeInsert",
+    ["ic"] = "StatusModeInsert",
+    ["v"]  = "StatusModeVisual",
+    ["V"]  = "StatusModeVisual",
+    ["\22"] = "StatusModeVisual",
+    ["s"]  = "StatusModeVisual",
+    ["S"]  = "StatusModeVisual",
+    ["R"]  = "StatusModeReplace",
+    ["Rv"] = "StatusModeReplace",
+    ["c"]  = "StatusModeCommand",
+    ["t"]  = "StatusModeTerminal",
+}
+
+local function mode_indicator()
+    local hl = mode_map[vim.api.nvim_get_mode().mode] or "StatusModeNormal"
+    return "%#" .. hl .. "# %*"
+end
+
 local severity_config = {
     { severity = vim.diagnostic.severity.ERROR, icon = icons.diagnostics.Error, hl = "DiagnosticError" },
     { severity = vim.diagnostic.severity.WARN, icon = icons.diagnostics.Warning, hl = "DiagnosticWarn" },
@@ -47,6 +68,7 @@ end
 
 function Statusline()
     local parts = {
+        mode_indicator(),
         " " .. filename(),
         "%m%r",
         "  ",
@@ -64,7 +86,7 @@ end
 
 vim.o.statusline = "%!v:lua.Statusline()"
 
-vim.api.nvim_create_autocmd({ "DiagnosticChanged", "LspAttach", "LspDetach", "LspProgress" }, {
+vim.api.nvim_create_autocmd({ "ModeChanged", "DiagnosticChanged", "LspAttach", "LspDetach", "LspProgress" }, {
     group = vim.api.nvim_create_augroup("statusline_redraw", { clear = true }),
     command = "redrawstatus",
 })

@@ -34,6 +34,12 @@ require("catppuccin").setup({
             Pmenu = { bg = colors.base, fg = colors.surface1 },
             BlinkCmpDocBorder = { bg = colors.base, fg = colors.surface1 },
             BlinkCmpDocSeparator = { bg = colors.base, fg = colors.surface1 },
+            StatusModeNormal = { bg = colors.mauve, fg = colors.base },
+            StatusModeInsert = { bg = colors.green, fg = colors.base },
+            StatusModeVisual = { bg = colors.blue, fg = colors.base },
+            StatusModeReplace = { bg = colors.red, fg = colors.base },
+            StatusModeCommand = { bg = colors.peach, fg = colors.base },
+            StatusModeTerminal = { bg = colors.teal, fg = colors.base },
         }
     end,
 })
